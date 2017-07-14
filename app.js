@@ -12,6 +12,8 @@ const mongoose       = require("mongoose");
 
 const index          = require('./routes/index');
 const authController = require('./routes/authController');
+const usersAPI       = require('./routes/api/users');
+
 require("dotenv").config();
 
 let app = express();
@@ -52,6 +54,7 @@ app.use(auth.setCurrentUser);
 
 app.use('/', authController);
 app.use('/', index);
+app.use('/api/users', usersAPI);
 
 
 // catch 404 and forward to error handler
