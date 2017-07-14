@@ -5,8 +5,6 @@ const logger         = require('morgan');
 const cookieParser   = require('cookie-parser');
 const bodyParser     = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
-const portDB         = require('./config').portDB;
-const databaseName   = require('./config').databaseName;
 const session        = require("express-session");
 const auth           = require('./helpers/auth');
 const flash          = require("connect-flash");
@@ -19,7 +17,6 @@ require("dotenv").config();
 let app = express();
 
 // Connection to DB
-// mongoose.connect(`mongodb://localhost:${portDB}/${databaseName}`);
 mongoose.connect(process.env.MONGODB_URI);
 
 app.set('layout', 'layouts/main');
