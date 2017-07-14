@@ -33,3 +33,14 @@ a {
 	padding-top: 50px;
 	margin: 0 auto;
 }
+
+.carret-right {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 2px;
+	vertical-align: middle;
+	border-left: 4px dashed;
+	border-top: 4px solid transparent;
+	border-bottom: 4px solid transparent;
+}
