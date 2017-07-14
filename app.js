@@ -14,11 +14,13 @@ const mongoose       = require("mongoose");
 
 const index          = require('./routes/index');
 const authController = require('./routes/authController');
+require("dotenv").config();
 
 let app = express();
 
 // Connection to DB
-mongoose.connect(`mongodb://localhost:${portDB}/${databaseName}`);
+// mongoose.connect(`mongodb://localhost:${portDB}/${databaseName}`);
+mongoose.connect(process.env.MONGODB_URI);
 
 app.set('layout', 'layouts/main');
 app.set('views', path.join(__dirname, 'views'));
