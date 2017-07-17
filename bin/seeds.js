@@ -11,19 +11,24 @@ const bcryptSalt = 10;
 const tools = [
     {
         name: 'Express JS',
-        imageUrl: '',
+        imageUrl: 'http://codecondo.com/wp-content/uploads/2015/07/15-Websites-built-with-Express_785.png?x94435',
         description: ''
     },
     {
         name: 'Chart.js',
-        imageUrl: '',
+        imageUrl: 'http://www.chartjs.org/img/chartjs-logo.svg',
         description: ''
     },
     {
         name: 'Node.js',
-        imageUrl: '',
+        imageUrl: 'https://nodejs.org/static/images/logo.svg',
         description: ''
     },
+    {
+        name: 'Passport JS',
+        imageUrl: 'https://pbs.twimg.com/profile_images/599259952574693376/DMrPoJtc.png',
+        description: ''
+    }
 ]
 
 Tool.create(tools, (err, docs) => {
