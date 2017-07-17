@@ -52,9 +52,4 @@ router.get('/post/:id', (req, res, next) => {
   
 });
 
-
-router.get('/admin', auth.checkLoggedIn('You must be login', '/login'), auth.checkCredentials('ADMIN'), function(req, res, next) {
-  res.render('admin', { user: JSON.stringify(req.user) });
-});
-
 module.exports = router;
