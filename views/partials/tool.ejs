@@ -9,9 +9,10 @@
         <div class="media-content">
             <div class="content">
                 <strong><%= tool.name %></strong>
-                <button class="button">Gotchas</button>
-                <button class="button">Awesomes</button>
-                <button class="button">Docs</button>
+                <a class="button" href="/gotcha/<%= tool._id %>">Gotchas</a> 
+                <a class="button" href="/awesome/<%= tool._id %>">Awesomes</a> 
+                <a class="button" href="/doc/<%= tool._id %>">Docs</a> 
+                <a class="button" href="/post/<%= tool._id %>">Post</a> 
             </div>
         </div>
 
