@@ -1,32 +1,19 @@
-<article class="media">
-  <figure class="media-left">
-    <p class="image is-64x64">
-      <img src="<%= tool.imageUrl %>">
-    </p>
-  </figure>
-  <div class="media-content">
-    <div class="content">
-      <p>
-          <strong><%= tool.name %></strong>
-        <br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-      </p>
-    </div>
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <a class="level-item">
-          <span class="icon is-small"><i class="fa fa-reply"></i></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fa fa-retweet"></i></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fa fa-heart"></i></span>
-        </a>
-      </div>
-    </nav>
-  </div>
-  <div class="media-right">
-    <button class="delete"></button>
-  </div>
+<article class="box">
+    <article class="media">
+        <div class="media-left">
+            <figure class="image is-64x64">
+                <img src="<%= tool.imageUrl %>" alt="Image">
+            </figure>
+        </div>
+
+        <div class="media-content">
+            <div class="content">
+                <strong><%= tool.name %></strong>
+                <button class="button">Gotchas</button>
+                <button class="button">Awesomes</button>
+                <button class="button">Docs</button>
+            </div>
+        </div>
+
+    </article>
 </article>
