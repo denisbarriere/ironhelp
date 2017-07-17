@@ -45,12 +45,30 @@ a {
 	border-bottom: 4px solid transparent;
 }
 
-.tile {
-	background-color: gray;
-	color: white;
-	border: 2px solid black;
+
+/* ADMIN INTERFACE */
+/* USER LIST */
+
+.admin-user-list > li { 
+	margin: 20px 0;
+}
+.admin-user-list__delete {
+	display: inline-block;
 }
 
-.tile .icon {
-	color: green;
+/* NEW USER */
+#admin-user-new > label,
+#admin-user-edit > label { display: block; }
+
+#admin-user-new > input,
+#admin-user-edit > input { margin-bottom: 20px; }
+
+#admin-user-new > button,
+#admin-user-edit > button { display: block; }
+
+
+/* SHOW USER */
+.user-image { 
+	width: 200px;
+	height: 200px;
 }

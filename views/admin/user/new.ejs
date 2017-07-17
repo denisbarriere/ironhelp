@@ -1,0 +1,23 @@
+  <h1>New User</h1>
+
+<form id='admin-user-new' action='/admin/users' method='POST'>
+
+  <label for='username'>Username</label>
+  <input type='text' id='username' name='username'>
+
+  <label for='email'>Email</label>
+  <input type='email' name='email' id='email' required>
+
+  <label for='image-url'>Profile Image URL</label>
+  <input type='text' name='imageUrl' id='image-url'>
+
+  <label for='role'>User Role</label>
+  <input type='radio' name='role' value='user' checked='checked'> User<br>
+  <input type='radio' name='role' value='admin'> Admin<br>
+
+  <label for='password'>Password</label>
+  <input type='password' name='password' id='password' required></input>
+
+  <button type='submit'>Create user</button>
+</form>
+

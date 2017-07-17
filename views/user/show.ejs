@@ -1,0 +1,8 @@
+<h1>User Data</h1>
+<% if (role === 'ADMIN') { %>
+  <a href='/admin/users'>back</a>
+<% } %>
+<p>Email: <%= user.email %></p>
+<p>Username: <%= user.username %></p>
+<p>Image URL: <img class='user-image' src='<%= user.imageUrl %> '></p>
+<p>Role: <%= user.role %></p>

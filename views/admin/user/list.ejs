@@ -1,0 +1,15 @@
+<h1>List of <strong><%= title %></strong> users</h1>
+<a href='/admin/user/new'>Add a new user</a>
+<ul class='admin-user-list'>
+  <% users.forEach( (user) => { %>
+    <li> <% if( user.username) { %> <%= user.username %> - <% } %> <%= user.email %>
+      <span>: </span>
+      <a href='/admin/user/<%= user._id %>'>show user</a>
+      <span> / </span>
+      <a href='/admin/user/<%= user._id %>/edit'>edit user</a>
+      <form class='admin-user-list__delete' action='/admin/user/<%= user._id %>/delete' method='POST'>
+        <button type='submit'>Delete user</button>
+      </form>
+    </li>
+  <% })%>
+</ul>

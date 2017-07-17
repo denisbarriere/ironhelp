@@ -1,0 +1,29 @@
+<h1>Edit User</h1>
+
+<form id='admin-user-edit' action='/admin/user/<%= user._id %>' method='POST'>
+
+  <label for='username'>Username</label>
+  <input type='text' id='username' name='username' value='<%= user.username %>'>
+
+  <label for='email'>Email</label>
+  <input type='email' id='email' name='email' value='<%= user.email %>' required>
+
+  <label for='image-url'>Profile Image URL</label>
+  <input type='text' id='image-url' name='imageUrl' value='<%= user.imageUrl %>'>
+
+  <label for='role'>User Role</label>
+  <input type='radio' name='role' value='user' <% if( user.role === 'USER') { %> checked='checked' <% }%>> User<br>
+  <input type='radio' name='role' value='admin' <% if( user.role === 'ADMIN') { %> checked='checked' <% }%>> Admin<br>
+
+  <label for='password'>Password</label>
+  <input type='password' id='password' name='password' value='<%= user.password %>' required></input>
+
+  <button type='submit'>Update User</button>
+  
+  <% if (role === 'ADMIN') { %>
+    <a href='/admin/users'>Cancel</a> 
+  <% } else { %>
+    <a href='/profile'>Cancel</a> 
+  <% } %>
+</form>
+
