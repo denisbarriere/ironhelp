@@ -12,39 +12,48 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', (req, res, next) => {
-  var email = req.body.email;
-  var password = req.body.password;
+  const emailInput = req.body.username;
+  const passwordInput = req.body.password;
 
-  if (email === '' || password === '') {
-  	req.flash('error', 'Indicate email and password' );
+  if (emailInput === '' || passwordInput === '') {
+  	req.flash('error', 'Please, enter an email address and password' );
     res.render('auth/signup', { 'message': req.flash('error') });
     return;
   }
 
-  User.findOne({ email }, 'email', (err, user) => {
-    if (user !== null) {
-    	req.flash('error', 'This email address already exists' );
+  User.findOne({ email: emailInput }, '_id', (err, existingUser) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    
+    if (existingUser !== null) {
+    	req.flash('error', `The email ${emailInput} is already in use.` );
       res.render('auth/signup', { message: req.flash('error') });
       return;
     }
 
-    var salt     = bcrypt.genSaltSync(bcryptSalt);
-    var hashPass = bcrypt.hashSync(password, salt);
+    const salt     = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(passwordInput, salt);
 
-    var newUser = User({
-      email,
+    const userSubmission = {
+      email: emailInput,
       password: hashPass
-    });
+    };
+
+    const newUser = new User(userSubmission);
 
     newUser.save((err) => {
       if (err) {
-      	req.flash('error', 'This email address already exists' );
+      	req.flash('error', 'An account with this email address already exists' );
         res.render('auth/signup', { message: req.flash('error') });
-      } else {
-        passport.authenticate('local')(req, res, function () {
-           res.redirect('/home');
-        });
+        return;
       }
+      
+      passport.authenticate('local')(req, res, function () {
+        res.redirect('/home');
+        });
+
     });
   });
 });
