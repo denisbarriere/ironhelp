@@ -11,6 +11,6 @@ const schema = new Schema({
     // web page??? MAYBE
 });
 
-const Category = mongoose.model("Category", schema);
+const Tool = mongoose.model("Tool", schema);
 
-module.exports = User;
+module.exports = Tool;
