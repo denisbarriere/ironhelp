@@ -9,4 +9,4 @@ const schema = new Schema({
 
 const Category = mongoose.model("Category", schema);
 
-module.exports = User;
+module.exports = Category;

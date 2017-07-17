@@ -1,2 +1,69 @@
 <h1>Post!</h1>
-<h2><%= tool.name %></h2>
+<h2>
+    <%= tool.name %>
+</h2>
+<h2>
+    <%= currentUser.user._id %>
+</h2>
+
+<form action="/post" method="post">
+    <div class="field">
+        <label class="label">Title</label>
+        <p class="control">
+            <input class="input" type="text" placeholder="title" name="title">
+        </p>
+    </div>
+
+    <div class="field">
+        <label class="label">Category</label>
+        <p class="control">
+            <span class="select">
+      <select>
+        <option>Select dropdown</option>
+        <option>Gotcha</option>
+        <option>Awesome</option>
+        <option>Doc</option>
+      </select>
+    </span>
+        </p>
+    </div>
+
+    <div class="field">
+        <label class="label">Tool</label>
+        <p class="control">
+            <span class="select">
+      <select>
+        <option>Select dropdown</option>
+        <option>Express</option>
+        <option>Chart.js</option>
+        <option>Bootstrap</option>
+        <option>Mongo</option>
+      </select>
+    </span>
+        </p>
+    </div>
+
+    <div class="field">
+        <label class="label">Description</label>
+        <p class="control">
+            <textarea class="textarea" placeholder="Description"></textarea>
+        </p>
+    </div>
+
+    <div class="field">
+        <label class="label">Content</label>
+        <p class="control">
+            <textarea class="textarea" placeholder="Content"></textarea>
+        </p>
+    </div>
+
+    <div class="field is-grouped">
+        <p class="control">
+            <button class="button is-primary">Submit</button>
+        </p>
+        <p class="control">
+            <button class="button is-link">Cancel</button>
+        </p>
+    </div>
+
+</form>

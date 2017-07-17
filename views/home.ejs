@@ -1,10 +1,16 @@
-<h1>home</h1>
+<h1>Choose a tool that's f-ing with you</h1>
 
-<ul>
+<hr>
+
+<div class="columns">
     <% tools.forEach( tool =>  { %>
-        <li><%- include('./partials/tool', {tool}) %></li>
-	<% }); %>
-</ul>
+  <div class="column">
+    <%- include('./partials/tool', {tool}) %>
+  </div>
+<% }); %>
+
+</div>
+
 
 
 

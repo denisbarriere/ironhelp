@@ -6,6 +6,7 @@ const schema = new Schema({
     category: { type: Schema.Types.ObjectId, ref: 'Category' },
     tool: { type: Schema.Types.ObjectId, ref: 'Tool' },
     title: { type: String, required: true },
+    summary: { type: String, required: true },
     content: { type: String, required: true },
 });
 

@@ -1,20 +1,26 @@
-<article class="box">
-    <article class="media">
-        <div class="media-left">
-            <figure class="image is-64x64">
-                <img src="<%= tool.imageUrl %>" alt="Image">
-            </figure>
-        </div>
+<div class="card">
+  <!-- <div class="card-image">
+    <figure class="image is-320x240">
+      <img src="<%= tool.imageUrl %>" alt="Image">
+    </figure>
+  </div> -->
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <h2 class="title is-8"><%= tool.name %></h2>
+        <span class="is-pulled-right">32 contributions</span>
+        <span class="icon is-large is-pulled-right">
+             <i class="fa fa-home">
+                <a href="/post/<%= tool._id %>">+</a>     
+            </i> 
+        </span>
+      </div>
+    </div>
 
-        <div class="media-content">
-            <div class="content">
-                <strong><%= tool.name %></strong>
-                <a class="button" href="/gotcha/<%= tool._id %>">Gotchas</a> 
-                <a class="button" href="/awesome/<%= tool._id %>">Awesomes</a> 
-                <a class="button" href="/doc/<%= tool._id %>">Docs</a> 
-                <a class="button" href="/post/<%= tool._id %>">Post</a> 
-            </div>
-        </div>
+    <a href="/gotcha/<%= tool._id %>" class="tile is-full-width">Gotchas</a>
+    <a href="/awesome/<%= tool._id %>" class="tile is-full-width">Awesomes</a>
+    <a href="/doc/<%= tool._id %>" class="tile is-full-width">Docs</a>
+    
 
-    </article>
-</article>
+  </div>
+</div>
