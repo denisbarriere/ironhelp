@@ -13,17 +13,11 @@ router.get('/secret', auth.checkLoggedIn('You must be login', '/login'), functio
   res.render('secret', { user: JSON.stringify(req.user) });
 });
 
-
+ 
 router.get('/home', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
-  
-  // If the admin is logged in, then redirect to the /admin page
-  if ( req.user.role === 'ADMIN' ) {
-    res.redirect('/admin');
-  } else {
-    Tool.find( (err, tools) => {
-      res.render('home', { user: JSON.stringify(req.user), tools });
-    })
-    }
+  Tool.find( (err, tools) => {
+    res.render('home', { user: JSON.stringify(req.user), tools });
+  })
 });
 
 

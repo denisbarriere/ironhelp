@@ -62,12 +62,18 @@ router.get('/login', (req, res, next) => {
   res.render('auth/login', { 'message': req.flash('error') });
 });
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  failureFlash: true,
-  passReqToCallback: true
-}));
+router.post('/login',
+  passport.authenticate('local', {
+    failureRedirect: '/login',
+    failureFlash: true,
+    passReqToCallback: true
+  }), (req, res) => {
+    if (req.user.role === 'ADMIN') {
+      res.redirect('/admin');
+    } else {
+      res.redirect('/home');
+    }
+  });
 
 router.get('/logout', (req, res) => {
   req.logout();
