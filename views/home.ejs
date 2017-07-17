@@ -1,11 +1,5 @@
 <h1>home</h1>
 
-<p>See all 
-    <button class="btn-default">Gotchas</button>
-    <button class="btn-default">Awesomes</button>
-    <button class="btn-default">Docs</button>
-</p>
-
 <ul>
     <% tools.forEach( tool =>  { %>
         <li><%- include('./partials/tool', {tool}) %></li>
