@@ -1,12 +1,12 @@
-var express = require('express');
-var router  = express.Router();
-var auth    = require('../helpers/auth');
-var Tool    = require('../models/tool');
+const express = require('express');
+const router  = express.Router();
+const auth    = require('../helpers/auth');
+const Tool    = require('../models/tool');
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
 
 router.get('/secret', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
