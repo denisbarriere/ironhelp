@@ -8,13 +8,13 @@ passport.deserializeUser((user, cb) => { cb(null, user) });
 
 passport.use(new LocalStrategy({
 		passReqToCallback: true
-	}, (req, username, password, next) => {
-	  User.findOne({ username }, (err, user) => {
+	}, (req, email, password, next) => {
+		User.findOne({ 'email': email }, (err, user) => {
 	    if (err) {
 	      return next(err);
 	    }
 	    if (!user) {
-	      return next(null, false, { message: "Incorrect username" });
+	      return next(null, false, { message: "Incorrect email address" });
 	    }
 	    if (!bcrypt.compareSync(password, user.password)) {
 	      return next(null, false, { message: "Incorrect password" });
