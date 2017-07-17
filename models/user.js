@@ -1,16 +1,18 @@
 const mongoose = require("mongoose");
-const Schema   = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  	username: String,
-  	password: String,
-  	role: {
-    	type: String,
-    	enum : ['EDITOR', 'ADMIN'],
-    	default : 'ADMIN'
-  	}
-	}, {
-  	timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
+	email: String,
+	//   username: String, MAYBE
+	password: String,
+	//   imageUrl: String, MAYBE
+	role: {
+		type: String,
+		enum: ['USER', 'ADMIN'],
+		default: 'USER'
+	}
+}, {
+		timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 	}
 );
 
