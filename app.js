@@ -13,6 +13,8 @@ const mongoose       = require("mongoose");
 const index          = require('./routes/index');
 const authController = require('./routes/authController');
 const usersAPI       = require('./routes/api/users');
+const profile        = require('./routes/profile');
+const admin          = require('./routes/admin');
 
 require("dotenv").config();
 
@@ -42,7 +44,7 @@ app.use(session({
   secret           : "passport-local-strategy",
   resave           : true,
   saveUninitialized: true,
-  cookie           : { maxAge: 60000 }
+  cookie           : { maxAge: process.env.COOKIE_MAX_AGE }
 }));
 
 app.use(flash());
@@ -53,6 +55,7 @@ app.use(passport.session());
 app.use(auth.setCurrentUser);
 
 app.use('/', authController);
+app.use('/', admin);
 app.use('/', index);
 app.use('/api/users', usersAPI);
 
