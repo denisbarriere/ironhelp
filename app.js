@@ -13,8 +13,8 @@ const mongoose       = require("mongoose");
 const index          = require('./routes/index');
 const authController = require('./routes/authController');
 const usersAPI       = require('./routes/api/users');
-const profile        = require('./routes/profile');
-const admin          = require('./routes/admin');
+//const profile        = require('./routes/profile');
+//const admin          = require('./routes/admin');
 
 require("dotenv").config();
 
@@ -55,7 +55,7 @@ app.use(passport.session());
 app.use(auth.setCurrentUser);
 
 app.use('/', authController);
-app.use('/', admin);
+//app.use('/', admin);
 app.use('/', index);
 app.use('/api/users', usersAPI);
 
