@@ -13,8 +13,8 @@ const mongoose       = require("mongoose");
 const index          = require('./routes/index');
 const authController = require('./routes/authController');
 const usersAPI       = require('./routes/api/users');
-//const profile        = require('./routes/profile');
-//const admin          = require('./routes/admin');
+const admin          = require('./routes/admin');
+const profile        = require('./routes/profile');
 
 require("dotenv").config();
 
@@ -55,9 +55,10 @@ app.use(passport.session());
 app.use(auth.setCurrentUser);
 
 app.use('/', authController);
-//app.use('/', admin);
-app.use('/', index);
+app.use('/admin', admin);
+app.use('/profile', profile);
 app.use('/api/users', usersAPI);
+app.use('/', index);
 
 
 // catch 404 and forward to error handler

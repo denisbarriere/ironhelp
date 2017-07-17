@@ -47,14 +47,14 @@ const admins = [
         email: 'jb.tellez@gmail.com',
         username: 'jb',
         password: hashPass,
-        profileImageUrl: 'https://avatars5.githubusercontent.com/u/364081?v=4&s=400',
+        imageUrl: 'https://avatars5.githubusercontent.com/u/364081?v=4&s=400',
         role: 'ADMIN',
     },
     {
         email:'denis.barriere@gmail.com',
         username: 'denis',
         password: hashPass,
-        profileImageUrl: 'https://avatars4.githubusercontent.com/u/28688064?v=4&s=400',
+        imageUrl: 'https://avatars4.githubusercontent.com/u/28688064?v=4&s=400',
         role: 'ADMIN',
     },
 ]
