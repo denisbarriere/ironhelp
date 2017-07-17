@@ -20,9 +20,36 @@ router.get('/home', auth.checkLoggedIn('You must be login', '/login'), function(
   })
 });
 
+router.get('/gotcha/:id', (req, res, next) => {
+  Tool.findOne({'_id': req.params.id}, (err, tool) => {
+    if (err) return next(err);
+    res.render('gotcha', {tool});
+  })
+  
+});
 
-router.get('/admin', auth.checkLoggedIn('You must be login', '/login'), auth.checkCredentials('ADMIN'), function(req, res, next) {
-  res.render('admin', { user: JSON.stringify(req.user) });
+router.get('/awesome/:id', (req, res, next) => {
+  Tool.findOne({'_id': req.params.id}, (err, tool) => {
+    if (err) return next(err);
+    res.render('awesome', {tool});
+  })
+  
+});
+
+router.get('/doc/:id', (req, res, next) => {
+  Tool.findOne({'_id': req.params.id}, (err, tool) => {
+    if (err) return next(err);
+    res.render('doc', {tool});
+  })
+  
+});
+
+router.get('/post/:id', (req, res, next) => {
+  Tool.findOne({'_id': req.params.id}, (err, tool) => {
+    if (err) return next(err);
+    res.render('post', {tool});
+  })
+  
 });
 
 module.exports = router;
