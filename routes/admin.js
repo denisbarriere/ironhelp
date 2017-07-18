@@ -13,11 +13,16 @@ const router  = express.Router();
 router.get('/',
   auth.checkLoggedIn('You must be login', '/login'),
   auth.checkCredentials('ADMIN'),
-  function(req, res, next) {
+  (req, res, next) => {
     res.render('admin/index', { user: req.user });
 });
 
 
+/******************************
+ *                            * 
+ *  USERS                     *
+ *                            *
+ * ****************************/
 /**
  * LIST USERS
 **/
@@ -34,7 +39,7 @@ router.get('/users',
 router.get('/user/new', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
-  function (req, res, next) {
+  (req, res, next) => {
     
     // Display the new user view
     res.render('admin/user/new');
@@ -85,6 +90,11 @@ router.post('/user/:user_id/delete',
 );
 
 
+/******************************
+ *                            * 
+ *  POSTS                     *
+ *                            *
+ * ****************************/
 /**
  * LIST POSTS
 **/
@@ -101,11 +111,8 @@ router.get('/posts',
 router.get('/post/new', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
-  function (req, res, next) {
-    
-    // Display the new post view
-    res.render('post/new');
-});
+  postHelper.showNewPostForm
+);
 
 // On new user form submit
 router.post('/posts',
@@ -118,7 +125,7 @@ router.post('/posts',
 /**
  * SHOW POST
 **/
-router.get('/post/:id', 
+router.get('/post/:post_id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
   userHelper.showUser
@@ -128,14 +135,14 @@ router.get('/post/:id',
 /**
  * EDIT POST
 **/
-router.get('/post/:id/edit', 
+router.get('/post/:post_id/edit', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),  
   userHelper.showEditUserPage
 );
 
 // On edit user form submit
-router.post('/post/:id', 
+router.post('/post/:post_id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
   userHelper.editUser
@@ -145,7 +152,7 @@ router.post('/post/:id',
 /**
  * DELETE POST
 **/
-router.post('/post/:id/delete', 
+router.post('/post/:post_id/delete', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
   userHelper.deleteUser  

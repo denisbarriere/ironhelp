@@ -67,14 +67,14 @@ router.get('/post/:id',
   function(req, res, next) {
   
   // Retrieve the whole list of tools from the db
-  Tool.find({}, (err, tools) => {
+  Tool.find({}, function (err, tools) {
     if (err) {
       return next(err);
     }
 
     // Retrieve the tool selected by the user
     const selectedTool = tools.find( function(tool) {
-      return tool._id == req.params.id
+      return tool._id == req.params.id;
     });
 
     // Retrieve all the categories from the db
@@ -84,10 +84,9 @@ router.get('/post/:id',
       } 
       
       // Render the new post form
-      res.render('post', {tools, categories, selectedTool});
+      res.render('post/new', {tools, categories, selectedTool});
     });
-
-  })
+  });
 
 });
 

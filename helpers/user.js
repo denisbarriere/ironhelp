@@ -5,10 +5,10 @@ const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 module.exports = {
-  showAllUsers: function(req, res, next) {
+  showAllUsers: (req, res, next) => {
     
     // Search ALL users
-    User.find({}, function (err, users) {
+    User.find({}, (err, users) => {
       if (err) {
         next(err);
       } else {
@@ -16,7 +16,7 @@ module.exports = {
       }
     });
   },
-  newUser: function(req, res, next) {
+  newUser: (req, res, next) => {
     
     // Encrypt password
     const salt     = bcrypt.genSaltSync(bcryptSalt);
@@ -33,7 +33,7 @@ module.exports = {
   
     // Create the new users in the db
     const newUser = new User(userInfo);
-    newUser.save( function (err) {
+    newUser.save( (err) => {
       if (err) {
         console.log(err);
         next(err);
@@ -43,7 +43,7 @@ module.exports = {
     });
 
   },
-  showUser: function(req, res, next) {
+  showUser: (req, res, next) => {
     
     // Retrieve user ID from URL
     let userID = 0;
@@ -57,7 +57,7 @@ module.exports = {
     }
     
     // Search for yhe user information based on the ID
-    User.findById(userID, function(err, user) {
+    User.findById(userID, (err, user) => {
       if (err) {
         return next(err);
       }
@@ -71,13 +71,13 @@ module.exports = {
     });
 
   },
-  showEditUserPage: function(req, res, next) {
+  showEditUserPage: (req, res, next) => {
   
     // Retrieve user ID from URL
     const userID = req.params.user_id;
 
     // Search for yhe user information based on the ID
-    User.findById(userID, function(err, user) {
+    User.findById(userID, (err, user) => {
       if (err) {
         return next(err);
       }
@@ -87,7 +87,7 @@ module.exports = {
     });
 
   },
-  editUser: function (req, res, next) {
+  editUser: (req, res, next) => {
     
     // Retrieve user ID from URL
     const userID = req.params.user_id;
@@ -110,7 +110,7 @@ module.exports = {
     }
 
     // Update the user data in the db
-    User.findByIdAndUpdate(userID, userUpdate, function(err, user) {
+    User.findByIdAndUpdate(userID, userUpdate, (err, user) => {
       if (err) { 
         return next(err); 
       }    
@@ -125,13 +125,13 @@ module.exports = {
     });
     
   },
-  deleteUser: function(req, res, next) {
+  deleteUser: (req, res, next) => {
   
     // Retrieve user ID from URL
     const userID = req.params.user_id;
 
     // Delete the user from the db
-    User.findByIdAndRemove(userID, function(err, user) {
+    User.findByIdAndRemove(userID, (err, user) => {
       if (err) { 
         return next(err);
       }

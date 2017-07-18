@@ -1,0 +1,70 @@
+<h1>New Post!</h1>
+
+<% if (isUserLoggedIn && isUserAdmin) { %>
+  <form action='/admin/posts' method='post'>
+<% } else { %>
+  <form action='/posts' method='post'>  
+<% } %>
+  <div class='field'>
+        <label class='label'>Title</label>
+        <p class='control'>
+            <input class='input' type='text' placeholder='title' name='title'>
+        </p>
+    </div>
+
+    <div class='field'>
+        <label class='label'>Category</label>
+        <p class='control'>
+            <span class='select'>
+                <select name='category'>
+                    <option>Select Category</option>       
+                    <% categories.forEach( category => { %>
+                        <option value='<%= category._id %>'><%= category.name %></option>
+                    <% }); %>  
+                </select>
+            </span>
+        </p>
+    </div>
+
+    <div class='field'>
+        <label class='label'>Tool</label>
+        <p class='control'>
+            <span class='select'>
+                <select name='tool'>
+                    <option>Select Tool</option>
+                    <% tools.forEach( tool => { %>
+                        <option value='<%= tool._id %>' <% if(tool._id === selectedTool._id ) { %> selected <%}%> ><%= tool.name %></option>
+                    <% }); %> 
+                </select>
+            </span>
+        </p>
+    </div>
+
+    <div class='field'>
+        <label class='label'>Summary</label>
+        <p class='control'>
+            <textarea class='textarea' placeholder='Description' name='summary'></textarea>
+        </p>
+    </div>
+
+    <div class='field'>
+        <label class='label'>Content</label>
+        <p class='control'>
+            <textarea class='textarea' placeholder='Content' name='content'></textarea>
+        </p>
+    </div>
+
+    <div class='field is-grouped'>
+        <p class='control'>
+            <button type="submit" class='button is-primary'>Submit</button>
+        </p>
+        <p class='control'>
+          <% if(isUserLoggedIn && isUserAdmin) { %>
+            <a class='button is-link' href='/admin/posts'>Cancel</button>
+          <% } else { %>
+            <a class='button is-link' href='/home'>Cancel</button>
+          <% } %>
+        </p>
+    </div>
+
+</form>

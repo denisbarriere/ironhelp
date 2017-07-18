@@ -1,0 +1,14 @@
+<h1>List of <strong><%= title %></strong> posts</h1>
+<a href='/admin/post/new'>Add a new post</a>
+<ul class='admin-post-list'>
+  <% posts.forEach( (post) => { %>
+    <li> <%= post.title %>:
+      <a href='/admin/post/<%= post._id %>'>show post</a>
+      <span> / </span>
+      <a href='/admin/post/<%= post._id %>/edit'>edit post</a>
+      <form class='admin-post-list__delete' action='/admin/post/<%= post._id %>/delete' method='POST'>
+        <button type='submit'>Delete post</button>
+      </form>
+    </li>
+  <% })%>
+</ul>
