@@ -66,15 +66,18 @@ a {
 /* NEW USER */
 #admin-user-new > label,
 #admin-user-edit > label,
-#user-edit > label { display: block; }
+#user-edit > label,
+#user-new-post >label { display: block; }
 
 #admin-user-new > input,
 #admin-user-edit > input,
-#user-edit > input { margin-bottom: 20px; }
+#user-edit > input,
+#user-new-post > input { margin-bottom: 20px; }
 
 #admin-user-new > button,
 #admin-user-edit > button,
-#user-edit > button { display: block; }
+#user-edit > button,
+#user-new-post > button { display: block; }
 
 
 /* SHOW USER */
@@ -82,3 +85,9 @@ a {
 	width: 200px;
 	height: 200px;
 }
+
+/* HOME PAGE */
+.tools {
+	height: 500px;
+	overflow-y: auto;
+} 
