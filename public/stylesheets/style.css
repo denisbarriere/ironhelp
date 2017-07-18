@@ -49,22 +49,27 @@ a {
 /* ADMIN INTERFACE */
 /* USER LIST */
 
-.admin-user-list > li { 
+.admin-user-list > li,
+.admin-post-list > linearGradient { 
 	margin: 20px 0;
 }
-.admin-user-list__delete {
+.admin-user-list__delete,
+.admin-post-list__delete {
 	display: inline-block;
 }
 
 /* NEW USER */
 #admin-user-new > label,
-#admin-user-edit > label { display: block; }
+#admin-user-edit > label,
+#user-edit > label { display: block; }
 
 #admin-user-new > input,
-#admin-user-edit > input { margin-bottom: 20px; }
+#admin-user-edit > input,
+#user-edit > input { margin-bottom: 20px; }
 
 #admin-user-new > button,
-#admin-user-edit > button { display: block; }
+#admin-user-edit > button,
+#user-edit > button { display: block; }
 
 
 /* SHOW USER */
