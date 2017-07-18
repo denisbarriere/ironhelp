@@ -34,13 +34,12 @@ module.exports = {
   },
   showUser: function(req, res, next) {
     
-
     // Retrieve user ID from URL
     let userID = 0;
 
     // From the URL is there
-    if (req.params.id) {
-      userID = req.params.id;
+    if (req.params.user_id) {
+      userID = req.params.user_id;
     } else {
       // Else get it from the sessions
       userID = res.locals.currentUser.user._id;
@@ -52,15 +51,19 @@ module.exports = {
         return next(err);
       }
     
-      // Show the user information view 
-      res.render('user/show', { user, role: req.user.role });
+      // Show the user information view, based on the user role 
+      if (req.user.role === 'ADMIN') {
+        res.render('user/show', { user, role: req.user.role });
+      } else {
+        res.render('profile/index', { user, role: req.user.role });
+      }
     })
 
   },
   showEditUserPage: function(req, res, next) {
   
     // Retrieve user ID from URL
-    const userID = req.params.id;
+    const userID = req.params.user_id;
 
     // Search for yhe user information based on the ID
     User.findById(userID, function(err, user) {
@@ -76,7 +79,7 @@ module.exports = {
   editUser: function (req, res, next) {
     
     // Retrieve user ID from URL
-    const userID = req.params.id;
+    const userID = req.params.user_id;
     
     // Encrypt password
     const salt     = bcrypt.genSaltSync(bcryptSalt);
@@ -110,7 +113,7 @@ module.exports = {
   deleteUser: function(req, res, next) {
   
     // Retrieve user ID from URL
-    const userID = req.params.id;
+    const userID = req.params.user_id;
 
     // Delete the user from the db
     User.findByIdAndRemove(userID, function(err, user) {
