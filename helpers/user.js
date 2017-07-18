@@ -64,9 +64,9 @@ module.exports = {
     
       // Show the user information view, based on the user role 
       if (req.user.role === 'ADMIN') {
-        res.render('user/show', { user, role: req.user.role });
+        res.render('user/show', { user });
       } else {
-        res.render('profile/index', { user, role: req.user.role });
+        res.render('profile/index', { user });
       }
     });
 
@@ -83,7 +83,7 @@ module.exports = {
       }
 
       // Display the edit user view
-      res.render('user/edit', { user, role: req.user.role })
+      res.render('user/edit', { user })
     });
 
   },
