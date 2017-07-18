@@ -23,14 +23,26 @@ router.get('/home', auth.checkLoggedIn('You must be login', '/login'), function 
   })
 });
 
+// TODO: refactor to combine with similar tool and docs
+router.get('/gotcha/:tool_id', (req, res, next) => {
+    Category.findOne({name:'Gotcha'}, (err, category) => {
+      if (err) return next(err);
+      res.redirect(`/posts/category/${category._id}/tool/${req.params.tool_id}`)
+    });
+});
 
-router.get('/gotcha/:id', (req, res, next) => {
-  Tool.findOne({ '_id': req.params.id }, (err, tool) => {
-    if (err) return next(err);
-    res.render('gotcha', { tool });
-  })
-  // res.redirect('/posts/')
+router.get('/awesome/:tool_id', (req, res, next) => {
+    Category.findOne({name:'Awesomes'}, (err, category) => {
+      if (err) return next(err);
+      res.redirect(`/posts/category/${category._id}/tool/${req.params.tool_id}`)
+    });
+});
 
+router.get('/doc/:tool_id', (req, res, next) => {
+    Category.findOne({name:'Docs'}, (err, category) => {
+      if (err) return next(err);
+      res.redirect(`/posts/category/${category._id}/tool/${req.params.tool_id}`)
+    });
 });
 
 router.get('/awesome/:id', (req, res, next) => {
@@ -120,7 +132,7 @@ router.get('/posts/tool/:tool_id', (req, res, next) => {
 });
 
 router.get('/posts/category/:category_id/tool/:tool_id', (req, res, next) => {
-  Post.find({user: req.user._id, tool:req.params.tool_id, category: req.params.category_id})
+  Post.find({tool:req.params.tool_id, category: req.params.category_id})
     .populate('user')
     .populate('tool')
     .populate('category')
