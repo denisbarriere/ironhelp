@@ -12,7 +12,7 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', (req, res, next) => {
-  const emailInput = req.body.username;
+  const emailInput = req.body.email;
   const passwordInput = req.body.password;
 
   if (emailInput === '' || passwordInput === '') {
