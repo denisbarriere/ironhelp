@@ -1,9 +1,19 @@
+<%
+  function countContribs(posts, tool) {
+ 
+    return posts
+      .filter( post => String(post.tool) == String(tool._id))
+      .length;
+
+  }
+%>
+
 <div class="card">
   <div class="card-content">
     <div class="media">
       <div class="media-content">
         <h2 class="title is-8"><%= tool.name %></h2>
-        <span class="is-pulled-right">32 contributions</span>
+        <span class="is-pulled-right"><%= countContribs(posts, tool) %> contributions</span>
         <span class="icon is-large is-pulled-right">
              <i class="fa fa-home">
                 <a href="/post/<%= tool._id %>">+</a>     

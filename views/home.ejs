@@ -16,7 +16,7 @@
     <% tool = tools[toolIndex++]; %>
     <% if (tool) { %>
     <div class="column is-one-quarter">
-      <%- include('./partials/tool', {tool}) %>
+      <%- include('./partials/tool', {tool, posts}) %>
     </div>
     <% } %>
     <% } %>

@@ -19,7 +19,9 @@ router.get('/secret', auth.checkLoggedIn('You must be login', '/login'), functio
 
 router.get('/home', auth.checkLoggedIn('You must be login', '/login'), function (req, res, next) {
   Tool.find((err, tools) => {
-    res.render('home', { user: JSON.stringify(req.user), tools });
+    Post.find((err, posts) => {
+    res.render('home', { user: JSON.stringify(req.user), tools, posts });
+  })
   })
 });
 
