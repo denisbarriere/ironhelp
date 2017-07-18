@@ -6,6 +6,11 @@ const Category = require('../models/category');
 
 const categories = [
     {
+        name: 'Gotchas',
+        imageUrl: '',
+        description: ''
+    },
+    {
         name: 'Awesomes',
         imageUrl: '',
         description: ''
