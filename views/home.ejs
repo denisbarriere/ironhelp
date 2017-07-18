@@ -2,15 +2,27 @@
 
 <hr>
 
+<div class="tools">
+<% let rowCount = Math.floor(tools.length / 4); %>
+<% if (tools.length % 4 > 0) { %>
+  <% rowCount += 1; %>
+<% } %>
+<% let toolIndex = 0; %>
+<% let tool %>
+ <% for (let row = 0; row < rowCount; row++) { %>
 <div class="columns">
-    <% tools.forEach( tool =>  { %>
-  <div class="column">
-    <%- include('./partials/tool', {tool}) %>
-  </div>
-<% }); %>
+
+    <% for (let col = 0; col < 4; col++) { %>
+    <% tool = tools[toolIndex++]; %>
+    <% if (tool) { %>
+    <div class="column is-one-quarter">
+      <%- include('./partials/tool', {tool}) %>
+    </div>
+    <% } %>
+    <% } %>
+
 
 </div>
 
-
-
-
+<% } %>
+</div>
