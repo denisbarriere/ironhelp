@@ -78,8 +78,8 @@ router.get('/post/:id', (req, res, next) => {
 
 });
 
-// TODO change to be admin specific route
-router.get('/posts/', (req, res, next) => {
+
+router.get('/admin/posts/', (req, res, next) => {
   Post.find({})
     .populate('user')
     .populate('tool')
@@ -92,8 +92,8 @@ router.get('/posts/', (req, res, next) => {
     });
 });
 
-router.get('/profile/posts/:id', (req, res, next) => {
-  Post.find({user:req.params.id})
+router.get('/profile/posts/:user_id', (req, res, next) => {
+  Post.find({user:req.params.user_id})
     .populate('user')
     .populate('tool')
     .populate('category')
