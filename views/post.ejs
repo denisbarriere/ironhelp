@@ -1,10 +1,5 @@
 <h1>Post!</h1>
-<h2>
-     <%= selectedTool %> 
-</h2>
-<h2>
-    <%= currentUser.user._id %>
-</h2>
+<h2><%= currentUser.user._id %></h2>
 
 <form action="/posts" method="post">
     <div class="field">
@@ -18,15 +13,13 @@
         <label class="label">Category</label>
         <p class="control">
             <span class="select">
-      <select name="category">
-          <option>Select dropdown</option>
-       
-        <% categories.forEach( category => { %>
-            <option value="<%= category._id %>"><%= category.name %></option>
-        <% }); %>  
-        
-      </select>
-    </span>
+                <select name="category">
+                    <option>Select Category</option>       
+                    <% categories.forEach( category => { %>
+                        <option value="<%= category._id %>"><%= category.name %></option>
+                    <% }); %>  
+                </select>
+            </span>
         </p>
     </div>
 
@@ -34,16 +27,13 @@
         <label class="label">Tool</label>
         <p class="control">
             <span class="select">
-      <select name="tool">
-          <option>Select dropdown</option>
-       
-          <% tools.forEach( tool => { %>
-            <option value="<%= tool._id %>"><%= tool.name %></option>
-        <% }); %> 
-
-        
-      </select>
-    </span>
+                <select name="tool">
+                    <option>Select Tool</option>
+                    <% tools.forEach( tool => { %>
+                        <option value="<%= tool._id %>" <% if(tool._id === selectedTool._id ) { %> selected <%}%> ><%= tool.name %></option>
+                    <% }); %> 
+                </select>
+            </span>
         </p>
     </div>
 

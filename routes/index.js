@@ -62,15 +62,28 @@ router.get('/doc/:id', (req, res, next) => {
 });
 
 // TODO unclear route: this is for a route with a tool with given ID
-router.get('/post/:id', (req, res, next) => {
-
+router.get('/post/:id', 
+  auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
+  function(req, res, next) {
+  
+  // Retrieve the whole list of tools from the db
   Tool.find({}, (err, tools) => {
-    if (err) return next(err);
-    Category.find({}, (err, categories) => {
-      if (err) return next(err);
-      
-      const selectedTool = tools.filter( tool => tool._id === req.params.id)[0];
+    if (err) {
+      return next(err);
+    }
 
+    // Retrieve the tool selected by the user
+    const selectedTool = tools.find( function(tool) {
+      return tool._id == req.params.id
+    });
+
+    // Retrieve all the categories from the db
+    Category.find({}, (err, categories) => {
+      if (err) {
+        return next(err);
+      } 
+      
+      // Render the new post form
       res.render('post', {tools, categories, selectedTool});
     });
 
