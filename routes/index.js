@@ -23,11 +23,13 @@ router.get('/home', auth.checkLoggedIn('You must be login', '/login'), function 
   })
 });
 
+
 router.get('/gotcha/:id', (req, res, next) => {
   Tool.findOne({ '_id': req.params.id }, (err, tool) => {
     if (err) return next(err);
     res.render('gotcha', { tool });
   })
+  // res.redirect('/posts/')
 
 });
 
@@ -92,7 +94,7 @@ router.get('/profile/posts/:id', (req, res, next) => {
 });
 
 router.get('/posts/category/:category_id', (req, res, next) => {
-  Post.find({category:req.params.category_id})
+  Post.find({user: req.user._id, category:req.params.category_id})
     .populate('user')
     .populate('tool')
     .populate('category')
@@ -106,6 +108,19 @@ router.get('/posts/category/:category_id', (req, res, next) => {
 
 router.get('/posts/tool/:tool_id', (req, res, next) => {
   Post.find({tool:req.params.tool_id})
+    .populate('user')
+    .populate('tool')
+    .populate('category')
+    .exec((err, posts) => {
+      if (err) return next(err);
+      res.locals.maybeHiddenClass = 'hidden';
+      res.locals.toggle = () => res.locals.maybeHiddenClass === 'hidden' ? '' : 'hidden';
+      res.render('posts', { posts });
+    });
+});
+
+router.get('/posts/category/:category_id/tool/:tool_id', (req, res, next) => {
+  Post.find({user: req.user._id, tool:req.params.tool_id, category: req.params.category_id})
     .populate('user')
     .populate('tool')
     .populate('category')
