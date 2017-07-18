@@ -28,6 +28,36 @@ const tools = [
         name: 'Passport JS',
         imageUrl: 'https://pbs.twimg.com/profile_images/599259952574693376/DMrPoJtc.png',
         description: ''
+    },
+    {
+        name: 'MongoDB',
+        imageUrl: '',
+        description: ''
+    },
+    {
+        name: 'Mongoose',
+        imageUrl: '',
+        description: ''
+    },
+    {
+        name: 'JQuery',
+        imageUrl: '',
+        description: ''
+    },
+    {
+        name: 'Google Maps',
+        imageUrl: '',
+        description: ''
+    },
+    {
+        name: 'NPM',
+        imageUrl: '',
+        description: ''
+    },
+    {
+        name: 'Facebook',
+        imageUrl: '',
+        description: ''
     }
 ]
 
