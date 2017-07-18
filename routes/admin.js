@@ -128,7 +128,7 @@ router.post('/posts',
 router.get('/post/:post_id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
-  userHelper.showUser
+  postHelper.showPost
 );
 
 
@@ -138,14 +138,14 @@ router.get('/post/:post_id',
 router.get('/post/:post_id/edit', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),  
-  userHelper.showEditUserPage
+  postHelper.showEditPostPage
 );
 
 // On edit user form submit
 router.post('/post/:post_id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
-  userHelper.editUser
+  postHelper.editPost
 );
 
 
@@ -155,7 +155,7 @@ router.post('/post/:post_id',
 router.post('/post/:post_id/delete', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
-  userHelper.deleteUser  
+  postHelper.deletePost  
 );
 
 module.exports = router;

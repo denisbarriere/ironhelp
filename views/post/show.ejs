@@ -1,0 +1,40 @@
+<article class="media">
+  <figure class="media-left">
+      <p class="image is-64x64">
+          <% console.log(post.user); %>
+          <img src="<%= post.user.imageUrl %>">
+      </p>
+  </figure>
+  <div class="media-content">
+      <div class="content">
+          <p>
+            <strong><%= post.summary %></strong>
+            <br>
+            <%= post.user.username %>
+            <%= post.tool ? post.tool.name : ''  %>
+            <%= post.category ? post.category.name : '' %>
+          </p>
+      </div>
+        <section>
+      <div class="media-content">
+          <div class="content">
+              <%= post.content %>
+          </div>
+      </div>
+  </section> 
+  </div>
+  <div class="media-right">
+    <% if (isUserLoggedIn && isUserAdmin) { %>
+      <form action='/admin/post/<%= post._id %>/delete' method='POST'>
+        <button class='delete' type='submit'></button>
+      </form>
+    <% } %>
+  </div>
+</article>
+
+<br>
+<% if (isUserLoggedIn && isUserAdmin) { %>
+  <a href='/admin/post/<%= post._id %>/edit'>Edit</a><span> | </span><a href='/admin/posts'>back</a>
+<% } else { %>
+  <a href='/profile/post/<%= post._id %>/edit'>Edit</a><span> | </span><a href='/profile/<%= currentUser.user._id %>/posts'>back</a>
+<% } %>

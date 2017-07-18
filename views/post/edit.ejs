@@ -1,14 +1,14 @@
-<h1>New Post!</h1>
-
 <% if (isUserLoggedIn && isUserAdmin) { %>
-  <form action='/admin/posts' method='post'>
+  <h1>Edit Post</h1>
+  <form action='/admin/post/<%=post._id%>' method='post'>
 <% } else { %>
-  <form action='/posts' method='post'>  
+  <h1>Edit My Post</h1>
+  <form action='/profile/<%= currentUser.user._id %>/post/<%post._id%>' method='post'>  
 <% } %>
   <div class='field'>
         <label class='label'>Title</label>
         <p class='control'>
-            <input class='input' type='text' placeholder='title' name='title' required>
+            <input class='input' type='text' placeholder='title' name='title' value='<%=post.title %> required'>
         </p>
     </div>
 
@@ -17,9 +17,9 @@
         <p class='control'>
             <span class='select'>
                 <select name='category' required>
-                    <option disabled selected value=''> Select Category</option>       
+                    <option disabled>Select Category</option>       
                     <% categories.forEach( category => { %>
-                        <option value='<%= category._id %>'><%= category.name %></option>
+                        <option value='<%= category._id %>' <% if (String(post.category) === String(category._id)) { %> selected <% } %>><%= category.name %></option>
                     <% }); %>  
                 </select>
             </span>
@@ -31,9 +31,9 @@
         <p class='control'>
             <span class='select'>
                 <select name='tool' required>
-                    <option disabled selected value=''>Select Tool</option>
+                    <option disabled>Select Tool</option>
                     <% tools.forEach( tool => { %>
-                        <option value='<%= tool._id %>' <% if(tool._id === selectedTool._id ) { %> selected <%}%> ><%= tool.name %></option>
+                        <option value='<%= tool._id %>' <% if (String(post.tool) === String(tool._id)) { %> selected <% } %>><%= tool.name %></option>
                     <% }); %> 
                 </select>
             </span>
@@ -43,14 +43,14 @@
     <div class='field'>
         <label class='label' required>Summary</label>
         <p class='control'>
-            <textarea class='textarea' placeholder='Description' name='summary'></textarea>
+            <textarea class='textarea' placeholder='Description' name='summary'><%=post.summary %></textarea>
         </p>
     </div>
 
     <div class='field'>
         <label class='label' required>Content</label>
         <p class='control'>
-            <textarea class='textarea' placeholder='Content' name='content'></textarea>
+            <textarea class='textarea' placeholder='Content' name='content'><%=post.content %></textarea>
         </p>
     </div>
 
@@ -62,7 +62,7 @@
           <% if(isUserLoggedIn && isUserAdmin) { %>
             <a class='button is-link' href='/admin/posts'>Cancel</button>
           <% } else { %>
-            <a class='button is-link' href='/home'>Cancel</button>
+            <a class='button is-link' href='/profile/<%= currentUser.user._id %>/posts'>Cancel</button>
           <% } %>
         </p>
     </div>
