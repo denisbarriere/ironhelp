@@ -90,8 +90,11 @@ module.exports = {
         email: req.body.email,
         username: req.body.username,
         password: hashPass,
-        imageUrl: req.body.imageUrl,
-        role: req.body.role.toUpperCase(),
+        imageUrl: req.body.imageUrl,   
+    }
+    // Add the role for admin only
+    if(req.user.role === 'ADMIN') {
+      userUpdate.role = req.body.role.toUpperCase();
     }
 
     // Update the user data in the db
