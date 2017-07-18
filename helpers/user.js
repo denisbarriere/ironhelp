@@ -5,6 +5,17 @@ const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 module.exports = {
+  showAllUsers: function(req, res, next) {
+    
+    // Search ALL users
+    User.find({}, function (err, users) {
+      if (err) {
+        next(err);
+      } else {
+        res.render('admin/user/list', { users } );
+      }
+    });
+  },
   newUser: function(req, res, next) {
     
     // Encrypt password
@@ -18,7 +29,7 @@ module.exports = {
       password: hashPass,
       imageUrl: req.body.imageUrl,
       role: req.body.role.toUpperCase(),
-    }
+    };
   
     // Create the new users in the db
     const newUser = new User(userInfo);
@@ -27,9 +38,9 @@ module.exports = {
         console.log(err);
         next(err);
       } else { // Redirect on success
-        res.redirect('/admin/users')
+        res.redirect('/admin/users');
       }
-    })
+    });
 
   },
   showUser: function(req, res, next) {
@@ -57,7 +68,7 @@ module.exports = {
       } else {
         res.render('profile/index', { user, role: req.user.role });
       }
-    })
+    });
 
   },
   showEditUserPage: function(req, res, next) {
@@ -73,7 +84,7 @@ module.exports = {
 
       // Display the edit user view
       res.render('user/edit', { user, role: req.user.role })
-    })
+    });
 
   },
   editUser: function (req, res, next) {
@@ -91,7 +102,8 @@ module.exports = {
         username: req.body.username,
         password: hashPass,
         imageUrl: req.body.imageUrl,   
-    }
+    };
+
     // Add the role for admin only
     if(req.user.role === 'ADMIN') {
       userUpdate.role = req.body.role.toUpperCase();
@@ -110,7 +122,7 @@ module.exports = {
       } else {
         res.redirect('/profile');
       }
-    })
+    });
     
   },
   deleteUser: function(req, res, next) {
@@ -126,7 +138,7 @@ module.exports = {
       // If the user was properly deleted, then go back to the user listing page
       console.log('user', user);
       res.redirect('/admin/users');
-    })
+    });
 
   },
 }

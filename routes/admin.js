@@ -24,17 +24,8 @@ router.get('/',
 router.get('/users', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
-  function(req, res, next) {
-    
-    // Search ALL users
-    User.find({}, function (err, users) {
-      if (err) {
-        next(err);
-      } else {
-        res.render('admin/user/list', { users } );
-      }
-    })
-});
+  userHelper.showAllUsers
+);
 
 
 /**
