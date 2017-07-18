@@ -132,7 +132,7 @@ router.get('/posts/tool/:tool_id', (req, res, next) => {
 });
 
 router.get('/posts/category/:category_id/tool/:tool_id', (req, res, next) => {
-  Post.find({user: req.user._id, tool:req.params.tool_id, category: req.params.category_id})
+  Post.find({tool:req.params.tool_id, category: req.params.category_id})
     .populate('user')
     .populate('tool')
     .populate('category')

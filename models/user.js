@@ -12,7 +12,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-	imageUrl: String,
+	imageUrl: {
+		type: String,
+		default: 'http://learnonline.canberra.edu.au/theme/image.php/uc/core/1499280925/u/f1'
+	},
 	role: {
 		type: String,
 		enum: ['GUEST', 'USER', 'ADMIN'],
