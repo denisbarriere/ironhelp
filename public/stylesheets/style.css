@@ -47,6 +47,11 @@ a {
 
 
 /* ADMIN INTERFACE */
+
+/* Navigation */
+.navbar--yellow,
+.navbar--yellow .nav { background-image: linear-gradient(to bottom,#fff 0,#ffdd57 100%); }
+
 /* USER LIST */
 
 .admin-user-list > li,
