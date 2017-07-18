@@ -60,13 +60,15 @@ router.get('/post/:id', (req, res, next) => {
   
 });
 
-/* 
+router.get('/posts/', (req, res, next) => {
+  Post.find({})
+  .populate('user')
+  .exec( (err, posts) => {
+    if (err) return next(err);
+    res.render('posts', { posts });
+  });
+});
 
-Issue: Works on mine but not on partners. 
-Gotcha: Installed dependencies but didn't save them to package.json
-Solution: Always use --save or --save-dev when installing!
-
-*/
 router.post('/posts', (req, res, next) => {
 
   const obj = {
