@@ -5,6 +5,17 @@ const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 module.exports = {
+  showAllUsers: function(req, res, next) {
+    
+    // Search ALL users
+    User.find({}, function (err, users) {
+      if (err) {
+        next(err);
+      } else {
+        res.render('admin/user/list', { users } );
+      }
+    });
+  },
   newUser: function(req, res, next) {
     
     // Encrypt password
@@ -18,7 +29,7 @@ module.exports = {
       password: hashPass,
       imageUrl: req.body.imageUrl,
       role: req.body.role.toUpperCase(),
-    }
+    };
   
     // Create the new users in the db
     const newUser = new User(userInfo);
@@ -27,20 +38,19 @@ module.exports = {
         console.log(err);
         next(err);
       } else { // Redirect on success
-        res.redirect('/admin/users')
+        res.redirect('/admin/users');
       }
-    })
+    });
 
   },
   showUser: function(req, res, next) {
     
-
     // Retrieve user ID from URL
     let userID = 0;
 
     // From the URL is there
-    if (req.params.id) {
-      userID = req.params.id;
+    if (req.params.user_id) {
+      userID = req.params.user_id;
     } else {
       // Else get it from the sessions
       userID = res.locals.currentUser.user._id;
@@ -52,15 +62,19 @@ module.exports = {
         return next(err);
       }
     
-      // Show the user information view 
-      res.render('user/show', { user, role: req.user.role });
-    })
+      // Show the user information view, based on the user role 
+      if (req.user.role === 'ADMIN') {
+        res.render('user/show', { user, role: req.user.role });
+      } else {
+        res.render('profile/index', { user, role: req.user.role });
+      }
+    });
 
   },
   showEditUserPage: function(req, res, next) {
   
     // Retrieve user ID from URL
-    const userID = req.params.id;
+    const userID = req.params.user_id;
 
     // Search for yhe user information based on the ID
     User.findById(userID, function(err, user) {
@@ -70,13 +84,13 @@ module.exports = {
 
       // Display the edit user view
       res.render('user/edit', { user, role: req.user.role })
-    })
+    });
 
   },
   editUser: function (req, res, next) {
     
     // Retrieve user ID from URL
-    const userID = req.params.id;
+    const userID = req.params.user_id;
     
     // Encrypt password
     const salt     = bcrypt.genSaltSync(bcryptSalt);
@@ -87,8 +101,12 @@ module.exports = {
         email: req.body.email,
         username: req.body.username,
         password: hashPass,
-        imageUrl: req.body.imageUrl,
-        role: req.body.role.toUpperCase(),
+        imageUrl: req.body.imageUrl,   
+    };
+
+    // Add the role for admin only
+    if(req.user.role === 'ADMIN') {
+      userUpdate.role = req.body.role.toUpperCase();
     }
 
     // Update the user data in the db
@@ -104,13 +122,13 @@ module.exports = {
       } else {
         res.redirect('/profile');
       }
-    })
+    });
     
   },
   deleteUser: function(req, res, next) {
   
     // Retrieve user ID from URL
-    const userID = req.params.id;
+    const userID = req.params.user_id;
 
     // Delete the user from the db
     User.findByIdAndRemove(userID, function(err, user) {
@@ -120,7 +138,7 @@ module.exports = {
       // If the user was properly deleted, then go back to the user listing page
       console.log('user', user);
       res.redirect('/admin/users');
-    })
+    });
 
   },
 }

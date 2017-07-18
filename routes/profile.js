@@ -17,13 +17,13 @@ router.get('/',
 /**
  * EDIT USER DATA
 **/
-router.get('/:id/edit', 
+router.get('/:user_id/edit', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   userHelper.showEditUserPage
 );
 
 // On edit user form submit
-router.post('/:id', 
+router.post('/:user_id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   userHelper.editUser
 );

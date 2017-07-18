@@ -1,14 +1,7 @@
-<% if (role === 'ADMIN') { %>
-
+<% if (isUserLoggedIn && isUserAdmin) { %>
+  
 <h1>User Data</h1>
 <a href='/admin/user/<%= user._id %>/edit'>edit user</a>
-
-<% } else { %>
-
-<h1>Hi <% if (user.username) { %> <%= user.username %> <% } else { %> <%= user.email %> <% } %></h1>
-
-<br>
-<h2>Your Profile</h2>
 
 <% } %>
 
@@ -17,14 +10,11 @@
 <p>Username: <%= user.username %></p>
 <p>Image URL: <img class='user-image' src='<%= user.imageUrl %> '></p>
 
-<% if (role === 'ADMIN') { %>
+<% if (isUserLoggedIn && isUserAdmin) { %>
 
 <p>Role: <%= user.role %></p>
 
 <br>
 <a href='/admin/users'>back</a>
-<% } else { %>
-
-<p><a href='/profile/<%= user._id %>/edit'>Edit Your Profile</a></p>
 
 <% } %>
