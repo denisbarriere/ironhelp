@@ -98,8 +98,6 @@ router.get('/admin/posts/', (req, res, next) => {
     .populate('category')
     .exec((err, posts) => {
       if (err) return next(err);
-      res.locals.maybeHiddenClass = 'hidden';
-      res.locals.toggle = () => res.locals.maybeHiddenClass === 'hidden' ? '' : 'hidden';
       res.render('posts', { posts });
     });
 });
@@ -111,8 +109,6 @@ router.get('/profile/posts/:user_id', (req, res, next) => {
     .populate('category')
     .exec((err, posts) => {
       if (err) return next(err);
-      res.locals.maybeHiddenClass = 'hidden';
-      res.locals.toggle = () => res.locals.maybeHiddenClass === 'hidden' ? '' : 'hidden';
       res.render('posts', { posts });
     });
 });
@@ -124,8 +120,6 @@ router.get('/posts/category/:category_id', (req, res, next) => {
     .populate('category')
     .exec((err, posts) => {
       if (err) return next(err);
-      res.locals.maybeHiddenClass = 'hidden';
-      res.locals.toggle = () => res.locals.maybeHiddenClass === 'hidden' ? '' : 'hidden';
       res.render('posts', { posts });
     });
 });
@@ -137,8 +131,6 @@ router.get('/posts/tool/:tool_id', (req, res, next) => {
     .populate('category')
     .exec((err, posts) => {
       if (err) return next(err);
-      res.locals.maybeHiddenClass = 'hidden';
-      res.locals.toggle = () => res.locals.maybeHiddenClass === 'hidden' ? '' : 'hidden';
       res.render('posts', { posts });
     });
 });
@@ -150,8 +142,6 @@ router.get('/posts/category/:category_id/tool/:tool_id', (req, res, next) => {
     .populate('category')
     .exec((err, posts) => {
       if (err) return next(err);
-      res.locals.maybeHiddenClass = 'hidden';
-      res.locals.toggle = () => res.locals.maybeHiddenClass === 'hidden' ? '' : 'hidden';
       res.render('posts', { posts });
     });
 });

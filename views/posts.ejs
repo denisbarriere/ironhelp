@@ -3,7 +3,7 @@
 <ul>
     <%posts.forEach( post => { %>
         <li>
-            <article class="media">
+            <article class="media post">
                 <figure class="media-left">
                     <p class="image is-64x64">
                         <img src="<%= post.user.imageUrl %>">
@@ -17,11 +17,10 @@
                             <%= post.user.username %>
                             <%= post.tool ? post.tool.name : ''  %>
                             <%= post.category ? post.category.name : '' %>
-                            <button onclick="<%= toggle() %>" class="button">show</button>
                         </p>
                     </div>
                      <section>
-                    <div class="media-content <%= maybeHiddenClass %>">
+                    <div class="media-content">
                         <div class="content">
                             <%= post.content %>
                         </div>
