@@ -1,3 +1,8 @@
+<script>
+    function toggle(postID) {
+        document.getElementById(postID).classList.toggle('hidden');
+    }
+</script>
 <h1>Posts</h1>
 
 <ul>
@@ -17,10 +22,11 @@
                             <%= post.user.username %>
                             <%= post.tool ? post.tool.name : ''  %>
                             <%= post.category ? post.category.name : '' %>
+                            <button onclick="toggle('post_<%= post._id %>')" class="button">details</button>
                         </p>
                     </div>
                      <section>
-                    <div class="media-content">
+                    <div id="post_<%= post._id %>" class="media-content hidden">
                         <div class="content">
                             <%= post.content %>
                         </div>
