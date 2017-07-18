@@ -34,8 +34,17 @@ module.exports = {
   },
   showUser: function(req, res, next) {
     
+
     // Retrieve user ID from URL
-    const userID = req.params.id;
+    let userID = 0;
+
+    // From the URL is there
+    if (req.params.id) {
+      userID = req.params.id;
+    } else {
+      // Else get it from the sessions
+      userID = res.locals.currentUser.user._id;
+    }
     
     // Search for yhe user information based on the ID
     User.findById(userID, function(err, user) {
