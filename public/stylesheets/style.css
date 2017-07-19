@@ -55,11 +55,13 @@ a {
 /* USER LIST */
 
 .admin-user-list > li,
-.admin-post-list > linearGradient { 
+.admin-post-list > li,
+.admin-list > li { 
 	margin: 20px 0;
 }
 .admin-user-list__delete,
-.admin-post-list__delete {
+.admin-post-list__delete,
+.admin-list__delete {
 	display: inline-block;
 }
 
