@@ -6,20 +6,20 @@ const bcryptSalt = 10;
 
 module.exports = {
   showAllUsers: (req, res, next) => {
-    
+
     // Search ALL users
     User.find({}, (err, users) => {
       if (err) {
         next(err);
       } else {
-        res.render('admin/user/list', { users } );
+        res.render('admin/user/list', { users, loggedInUser: req.user });
       }
     });
   },
   newUser: (req, res, next) => {
-    
+
     // Encrypt password
-    const salt     = bcrypt.genSaltSync(bcryptSalt);
+    const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(req.body.password, salt);
 
     // Retrieve user info
@@ -30,10 +30,10 @@ module.exports = {
       imageUrl: req.body.imageUrl,
       role: req.body.role.toUpperCase(),
     };
-  
+
     // Create the new users in the db
     const newUser = new User(userInfo);
-    newUser.save( (err) => {
+    newUser.save((err) => {
       if (err) {
         console.log(err);
         next(err);
@@ -44,7 +44,7 @@ module.exports = {
 
   },
   showUser: (req, res, next) => {
-    
+
     // Retrieve user ID from URL
     let userID = 0;
 
@@ -55,24 +55,20 @@ module.exports = {
       // Else get it from the sessions
       userID = res.locals.currentUser.user._id;
     }
-    
+
     // Search for yhe user information based on the ID
     User.findById(userID, (err, user) => {
+      
       if (err) {
         return next(err);
       }
-    
-      // Show the user information view, based on the user role 
-      if (req.user.role === 'ADMIN') {
-        res.render('user/show', { user });
-      } else {
-        res.render('profile/index', { user });
-      }
+
+      res.render('profile/index', { user, loggedInUser: req.user });
     });
 
   },
   showEditUserPage: (req, res, next) => {
-  
+
     // Retrieve user ID from URL
     const userID = req.params.user_id;
 
@@ -88,10 +84,10 @@ module.exports = {
 
   },
   editUser: (req, res, next) => {
-    
+
     // Retrieve user ID from URL
     const userID = req.params.user_id;
-    
+
     // Retrieve user info
     const userUpdate = {
         email: req.body.email,
@@ -101,7 +97,7 @@ module.exports = {
     };
 
     // Add the role for admin only
-    if(req.user.role === 'ADMIN') {
+    if (req.user.role === 'ADMIN' && req.body.role) {
       userUpdate.role = req.body.role.toUpperCase();
     }
 
@@ -140,16 +136,16 @@ module.exports = {
         }
       });
     });
-    
+
   },
   deleteUser: (req, res, next) => {
-  
+
     // Retrieve user ID from URL
     const userID = req.params.user_id;
 
     // Delete the user from the db
     User.findByIdAndRemove(userID, (err, user) => {
-      if (err) { 
+      if (err) {
         return next(err);
       }
       // If the user was properly deleted, then go back to the user listing page

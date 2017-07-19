@@ -1,43 +1,52 @@
-<% if (isUserLoggedIn && isUserAdmin) { %>
+<form class="hero-body" action='/profile/<%= user._id %>' method='POST'>
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column is-4 is-offset-4">
+            <h1 class="title">
+              Edit Profile
+            </h1>
+            <div class="box">
+              <label class="label">Username</label>
+              <p class="control">
+                <input class="input" type="text" placeholder="jsmith" name="username" value='<%= user.username %>'>
+              </p>
+              <label class="label">Email</label>
+              <p class="control">
+                <input class="input" type="text" placeholder="jsmith@example.org" name="email" value='<%= user.email %>'>
+              </p>
+              <label class="label">Image Url</label>
+              <p class="control">
+                <input class="input" type="text" placeholder="image url" name="imageUrl" value='<%= user.imageUrl %>'>
+              </p>
 
-<h1>Edit User</h1>
-<form id='admin-user-edit' action='/admin/user/<%= user._id %>' method='POST'>
+              <% if (isUserLoggedIn && isUserAdmin) { %>
 
-<% } else { %>
- 
-<h1>Edit My Profile</h1>
-<form id='user-edit' action='/profile/<%= user._id %>' method='POST'>
+              <label for='role'>User Role</label>
+              <br>
+              <input type='radio' name='role' value='user' <% if( user.role === 'USER') { %> checked='checked' <% }%>> User<br>
+              <input type='radio' name='role' value='admin' <% if( user.role === 'ADMIN') { %> checked='checked' <% }%>> Admin<br>
+              
+              <% } %>
+              
+              <!-- <hr>
+              <label class="label">Password</label>
+              <p class="control">
+                <input class="input" type="password" placeholder="●●●●●●●">
+              </p>
+              <label class="label">Confirm Password</label>
+              <p class="control">
+                <input class="input" type="password" placeholder="●●●●●●●">
+              </p> -->
 
-<% } %>
-
-  <label for='username'>Username</label>
-  <input type='text' id='username' name='username' value='<%= user.username %>'>
-
-  <label for='email'>Email</label>
-  <input type='email' id='email' name='email' value='<%= user.email %>' required>
-
-  <label for='image-url'>Profile Image URL</label>
-  <input type='text' id='image-url' name='imageUrl' value='<%= user.imageUrl %>'>
-
-  <label for='password'>Password</label>
-  <input type='password' id='password' name='password' value='<%= user.password %>' required></input> 
-
-<% if (isUserLoggedIn && isUserAdmin) { %>
-
-  <label for='role'>User Role</label>
-  <input type='radio' name='role' value='user' <% if( user.role === 'USER') { %> checked='checked' <% }%>> User<br>
-  <input type='radio' name='role' value='admin' <% if( user.role === 'ADMIN') { %> checked='checked' <% }%>> Admin<br>
-    
-  <br>
-  <button type='submit'>Update User</button>
-  <a href='/admin/users'>Cancel</a> 
-
-<% } else { %>
-
-  <br>
-  <button type='submit'>Update My Profile</button>
-  <a href='/profile'>Cancel</a> 
-
-<% } %>
-</form>
+              <hr>
+              <p class="control">
+                <button class="button is-primary">Update</button>
+                <button class="button is-default">Cancel</button>
+              </p>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </form>
 
