@@ -22,6 +22,28 @@ module.exports = {
     });
     
   },
+  showAllPostsByUserId: (req, res, next) => {
+
+    // Retrieve user ID from URL
+    let userID = req.params.user_id;
+
+    // Retrieve all posts
+    Post.find({user: userID})
+    .populate('user')
+    .exec( (err, posts) => {
+      if (err) {
+        return next(err);
+      }
+      
+      // Display all the posts, based on the user role 
+      if (req.user.role === 'ADMIN') {
+        res.render('admin/post/list', { posts });
+      } else {
+        res.render('posts', { posts });
+      }
+    });
+    
+  },
   showNewPostForm: (req, res, next) => {
       
     // Retrieve the whole list of tools from the db

@@ -1,7 +1,8 @@
 const express = require('express');
 const auth    = require('../helpers/auth');
 const userHelper = require('../helpers/user');
-const User     = require('../models/user');
+const postHelper = require('../helpers/post');
+// const User     = require('../models/user');
 const router  = express.Router();
 
 
@@ -14,6 +15,12 @@ router.get('/',
   userHelper.showUser
 );
 
+
+/******************************
+ *                            * 
+ *  USERS                     *
+ *                            *
+ * ****************************/
 /**
  * EDIT USER DATA
 **/
@@ -26,6 +33,20 @@ router.get('/:user_id/edit',
 router.post('/:user_id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   userHelper.editUser
+);
+
+
+/******************************
+ *                            * 
+ *  POSTS                     *
+ *                            *
+ * ****************************/
+/**
+ * MY POSTS
+**/
+router.get('/posts/:user_id', 
+  auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
+  postHelper.showAllPostsByUserId
 );
 
 module.exports = router;
