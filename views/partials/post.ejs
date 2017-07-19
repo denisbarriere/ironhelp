@@ -18,6 +18,8 @@
             <div class="media-content">
                 <p class="title is-4"><%= post.summary %></p>
                 <p class="subtitle is-6"><%= post.user ? post.user.username : '' %></p>
+                <p><%= post.category.name %></p>
+                <p><%= post.tool.name %></p>
             </div>
             <% if (user && user.role === 'ADMIN') { %>
             <div class="media-right">

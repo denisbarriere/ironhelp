@@ -1,8 +1,17 @@
 
+<script>
+    function refresh(type) {
+        
+        const segments = window.location.href.split('/');
+        const toolID = segments.pop();
+        location = '/' + type + '/' + toolID;
+        
+    }
+</script>
 <h1>Posts</h1>
-
-<!-- need conditional display of tool/category when present -->
-
+<button onclick="refresh('gotcha' %>)" class="button">gotcha</button>
+<button onclick="refresh('awesome' %>)" class="button">awesome</button>
+<button onclick="refresh('doc' %>)" class="button">doc</button>
 <ul>
     <%posts.forEach( post => { %>
         <li>
