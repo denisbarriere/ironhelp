@@ -92,9 +92,10 @@ module.exports = {
     // Retrieve user ID from URL
     const userID = req.params.user_id;
     
+    // TODO: uncomment when  feature added back
     // Encrypt password
-    const salt     = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(req.body.password, salt);
+    // const salt     = bcrypt.genSaltSync(bcryptSalt);
+    // const hashPass = bcrypt.hashSync(req.body.password, salt);
 
     // Retrieve user info
     const userUpdate = {
@@ -105,7 +106,7 @@ module.exports = {
     };
 
     // Add the role for admin only
-    if(req.user.role === 'ADMIN') {
+    if(req.user.role === 'ADMIN' && req.body.role) {
       userUpdate.role = req.body.role.toUpperCase();
     }
 
