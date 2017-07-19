@@ -70,15 +70,19 @@ a {
 #admin-user-new > label,
 #admin-new > label,
 #admin-user-edit > label,
+#admin-edit > label,
 #user-edit > label { display: block; }
 
 #admin-user-new > input,
 #admin-new > input,
 #admin-user-edit > input,
+#admin-edit > input,
 #user-edit > input { margin-bottom: 20px; }
 
 #admin-user-new > button,
+#admin-new > button,
 #admin-user-edit > button,
+#admin-edit > button,
 #user-edit > button { display: block; }
 
 
