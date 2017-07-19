@@ -1,0 +1,19 @@
+<h1>Edit <%= collectionName.charAt(0).toUpperCase() %><%= collectionName.slice(1) %></h1>
+
+<form id='admin-edit' action='/admin/<%= collectionName %>/<%= document._id %>' method='POST'>
+
+  <label for='name'>Name</label>
+  <input type='text' id='name' name='name' value='<%= document.name %>' required>
+
+  <label for='image-url'>Image URL</label>
+  <input type='text' id='image-url' name='imageUrl' value='<%= document.imageUrl %>'>
+
+  <label for='description'>Description</label>
+  <input type='text' id='description' name='description' value='<%= document.description %>'>
+    
+  <br>
+  <button type='submit'>Update <%= collectionName.charAt(0).toUpperCase() %><%= collectionName.slice(1) %></button>
+  <a href='/admin/<%= collectionNamePlural %>'>Cancel</a> 
+
+</form>
+

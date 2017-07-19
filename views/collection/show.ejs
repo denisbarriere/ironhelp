@@ -1,0 +1,29 @@
+<section class='media user'>
+  <figure class='media-left'>
+    <p class='image is-128x128'>
+      <img src='<%= document.imageUrl %>'>
+    </p>
+  </figure>
+  <div class='media-content'>
+    <div class='content'>
+      <p>
+        <strong><%= document.name %>
+      </p>
+      <section>
+        <div class='media-content'>
+          <div class='content'>
+            <%= document.description %>
+          </div>
+        </div>
+      </section> 
+    </div>
+    <nav class='level is-mobile'>
+      <div class='level-left'>
+          <a class='level-item' href='/admin/<%= collectionName %>/<%= document._id %>/edit'>edit</a>
+          <form class='admin-list__delete' action='/admin/<%= collectionName %>/<%= document._id %>/delete' method='POST'>
+            <button type='submit'>Delete</button>
+          </form>
+      </div>
+    </nav>
+  </div>
+</section>
