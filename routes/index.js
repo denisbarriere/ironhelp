@@ -34,14 +34,14 @@ router.get('/gotcha/:tool_id', (req, res, next) => {
 });
 
 router.get('/awesome/:tool_id', (req, res, next) => {
-    Category.findOne({name:'Awesomes'}, (err, category) => {
+    Category.findOne({name:'Awesome'}, (err, category) => {
       if (err) return next(err);
       res.redirect(`/posts/category/${category._id}/tool/${req.params.tool_id}`)
     });
 });
 
 router.get('/doc/:tool_id', (req, res, next) => {
-    Category.findOne({name:'Docs'}, (err, category) => {
+    Category.findOne({name:'Doc'}, (err, category) => {
       if (err) return next(err);
       res.redirect(`/posts/category/${category._id}/tool/${req.params.tool_id}`)
     });
