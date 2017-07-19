@@ -14,11 +14,13 @@
       <div class="media-content">
         <h2 class="title is-8"><%= tool.name %></h2>
         <span class="is-pulled-right"><%= countContribs(posts, tool) %> contributions</span>
+        <% if (isUserLoggedIn) { %>
         <span class="icon is-large is-pulled-right">
              <i class="fa fa-home">
                 <a href="/post/<%= tool._id %>">+</a>     
             </i> 
         </span>
+        <% } %>
       </div>
     </div>
 

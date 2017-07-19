@@ -2,8 +2,6 @@ const express = require('express');
 const auth = require('../helpers/auth');
 const userHelper = require('../helpers/user');
 const postHelper = require('../helpers/post');
-const User = require('../models/user');
-const Post = require('../models/post');
 const router  = express.Router();
 
 
