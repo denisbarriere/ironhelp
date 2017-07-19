@@ -1,4 +1,4 @@
-<h1>List of <strong><%= title %></strong> users</h1>
+<!-- <h1>List of <strong><%= title %></strong> users</h1>
 <a href='/admin/user/new'>Add a new user</a>
 <ul class='admin-user-list'>
   <% users.forEach( (user) => { %>
@@ -12,4 +12,12 @@
       </form>
     </li>
   <% })%>
-</ul>
+</ul> -->
+
+<a href='/admin/user/new'>Add a new user</a>
+
+<% users.forEach( user => { %>
+
+  <%- include('../../user/show', {user}) %>
+
+<% }); %>
