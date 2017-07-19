@@ -133,7 +133,7 @@ router.get('/posts/tool/:tool_id', (req, res, next) => {
     .populate('category')
     .exec((err, posts) => {
       if (err) return next(err);
-      res.render('posts', { posts, use: req.user });
+      res.render('posts', { posts, user: req.user });
     });
 });
 
