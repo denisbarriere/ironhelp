@@ -1,41 +1,44 @@
 <script>
     function toggle(postID) {
-        document.getElementById(postID).classList.toggle('hidden');
+        document.getElementById('post_' + postID).classList.toggle('hidden');
+        document.getElementById('expand_' + postID).classList.toggle('hidden');
     }
+
 </script>
 
-<article class="media post">
+<div class="card post is-paddingless">
 
-    <figure class="media-left">
-        <p class="image is-64x64">
-            <img src="<%= post.user.imageUrl %>">
-        </p>
-    </figure>
-
-    <div class="media-content">
-        <div class="content">
-            <p>
-                <strong><%= post.summary %></strong>
-                <br>
-                <%= post.user.username %>
-                    <%= post.tool ? post.tool.name : ''  %>
-                        <%= post.category ? post.category.name : '' %>
-                            <button onclick="toggle('post_<%= post._id %>')" class="button">details</button>
-            </p>
+    <div class="card-content">
+        <div class="media">
+            <div class="media-left">
+                <figure class="image is-48x48">
+                    <img src="<%= post.user.imageUrl %>" alt="Image">
+                </figure>
+            </div>
+            <div class="media-content">
+                <p class="title is-4"><%= post.summary %></p>
+                <p class="subtitle is-6"><%= post.user.username %></p>
+            </div>
         </div>
+    </div>
 
-        <section>
+    <div class="card-content is-paddingless">
+        <div class="content">
+            <div id="expand_<%= post._id %>" class="expand" onclick="toggle('<%= post._id %>')">
+                <span class="icon is-large">
+                    <i class="fa fa-angle-down"></i>
+                </span>
+            </div>
             <div id="post_<%= post._id %>" class="media-content hidden">
-                <div class="content">
+                <div class="content section">
                     <%= post.content %>
                 </div>
+                <div class="expand" onclick="toggle('<%= post._id %>')">
+                    <span class="icon is-large">
+                    <i class="fa fa-angle-up"></i>
+                </span>
+                </div>
             </div>
-        </section>
-
+        </div>
     </div>
-
-    <div class="media-right">
-        <button class="delete"></button>
-    </div>
-
-</article>
+</div>
