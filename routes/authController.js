@@ -51,7 +51,7 @@ router.post('/signup', (req, res, next) => {
       }
       
       passport.authenticate('local')(req, res, function () {
-        res.redirect('/home');
+        res.redirect('/');
         });
 
     });
@@ -71,7 +71,7 @@ router.post('/login',
     if (req.user.role === 'ADMIN') {
       res.redirect('/admin');
     } else {
-      res.redirect('/home');
+      res.redirect('/');
     }
   });
 
