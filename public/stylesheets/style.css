@@ -91,14 +91,19 @@ a {
 
 /* POSTS */
 .post {
-	border: 2px solid rgb(38,203,78);
+	border: 2px solid rgb(3,203,162);
 	padding: 20px;
 	margin: 10px;
 }
 
 .post .expand {
-	background-color: rgb(38,203,78);
+	background-color: rgb(3,203,162);
 	height: 50px;
 	color: white;
 	text-align: center;
+}
+
+.post .section {
+	background-color: rgb(245,245,245);
+	margin: 10px;
 }
