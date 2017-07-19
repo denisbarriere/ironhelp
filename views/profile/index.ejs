@@ -2,7 +2,7 @@
 <h1>Hi <% if (user.username) { %> <%= user.username %> <% } else { %> <%= user.email %> <% } %></h1>
 <br>
 
-<%- include('../user/show') %>
+<%- include('../user/show', {user} ) %>
 
 <br>
 <p><a href='/profile/posts/<%= user._id %>'>My Posts</a></p>

@@ -5,20 +5,13 @@ const Tool = require('../models/tool');
 module.exports = {
   showAllPosts: (req, res, next) => {
 
-    // Retrieve all posts
     Post.find({})
     .populate('user')
-    .exec( (err, posts) => {
-      if (err) {
-        return next(err);
-      }
-      
-      // Display all the posts, based on the user role 
-      if (req.user.role === 'ADMIN') {
-        res.render('admin/post/list', { posts });
-      } else {
-        res.render('posts', { posts });
-      }
+    .populate('tool')
+    .populate('category')
+    .exec((err, posts) => {
+      if (err) return next(err);
+      res.render('posts', { posts, user: req.user });
     });
     
   },
@@ -39,7 +32,7 @@ module.exports = {
       if (req.user.role === 'ADMIN') {
         res.render('admin/post/list', { posts });
       } else {
-        res.render('posts', { posts });
+        res.render('posts', { posts, user: req.user });
       }
     });
     

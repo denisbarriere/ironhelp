@@ -6,7 +6,7 @@
 <ul>
     <%posts.forEach( post => { %>
         <li>
-            <%- include('./partials/post', {post}) %>
+            <%- include('./partials/post', {post, user}) %>
         </li>
         <% }); %>
 </ul>

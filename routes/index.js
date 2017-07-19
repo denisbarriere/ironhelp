@@ -122,7 +122,7 @@ router.get('/posts/category/:category_id', (req, res, next) => {
     .populate('category')
     .exec((err, posts) => {
       if (err) return next(err);
-      res.render('posts', { posts });
+      res.render('posts', { posts, user: req.user });
     });
 });
 
@@ -133,7 +133,7 @@ router.get('/posts/tool/:tool_id', (req, res, next) => {
     .populate('category')
     .exec((err, posts) => {
       if (err) return next(err);
-      res.render('posts', { posts });
+      res.render('posts', { posts, use: req.user });
     });
 });
 
@@ -144,7 +144,7 @@ router.get('/posts/category/:category_id/tool/:tool_id', (req, res, next) => {
     .populate('category')
     .exec((err, posts) => {
       if (err) return next(err);
-      res.render('posts', { posts });
+      res.render('posts', { posts, user: req.user });
     });
 });
 

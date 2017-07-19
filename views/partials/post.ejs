@@ -19,6 +19,7 @@
                 <p class="title is-4"><%= post.summary %></p>
                 <p class="subtitle is-6"><%= post.user.username %></p>
             </div>
+            <% if (user && user.role === 'ADMIN') { %>
             <div class="media-right">
                 <span class="icon is-medium">
                     <i class="fa fa-pencil-square"></i>
@@ -29,6 +30,7 @@
                     <i class="fa fa-times-circle"></i>
                 </span>
             </div>
+            <% } %>
         </div>
     </div>
 
