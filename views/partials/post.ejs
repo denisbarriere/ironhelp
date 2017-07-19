@@ -1,0 +1,41 @@
+<script>
+    function toggle(postID) {
+        document.getElementById(postID).classList.toggle('hidden');
+    }
+</script>
+
+<article class="media post">
+
+    <figure class="media-left">
+        <p class="image is-64x64">
+            <img src="<%= post.user.imageUrl %>">
+        </p>
+    </figure>
+
+    <div class="media-content">
+        <div class="content">
+            <p>
+                <strong><%= post.summary %></strong>
+                <br>
+                <%= post.user.username %>
+                    <%= post.tool ? post.tool.name : ''  %>
+                        <%= post.category ? post.category.name : '' %>
+                            <button onclick="toggle('post_<%= post._id %>')" class="button">details</button>
+            </p>
+        </div>
+
+        <section>
+            <div id="post_<%= post._id %>" class="media-content hidden">
+                <div class="content">
+                    <%= post.content %>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="media-right">
+        <button class="delete"></button>
+    </div>
+
+</article>
