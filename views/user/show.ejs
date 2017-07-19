@@ -10,18 +10,14 @@
         <strong><%= user.username %>
         <br>
         </strong> <small><%= user.email %></small> 
-        <% if (loggedInUser.role == 'ADMIN') { %>
         <br>
         <strong>role: <%= user.role %></strong>
-        <% } %>
       </p>
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
           <a class="level-item" href="/profile/<%= user._id %>/edit">edit</a>
-          <% if (loggedInUser.role == 'ADMIN') { %>
           <a class="level-item" href="/admin/delete/<%= user._id %>">delete</a>
-          <% } %>
       </div>
     </nav>
   </div>
