@@ -98,6 +98,22 @@ a {
 	overflow-y: auto;
 }
 
+.tool:link {
+	text-decoration: none;
+}
+.tool .card {
+	background-color: rgb(3,203,162);
+	color: white;
+}
+
+.tool .title {
+	color: inherit;
+}
+
+.tool .card:hover {
+	opacity: .85;
+}
+
 
 /* USERS */
 .user {

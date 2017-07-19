@@ -4,29 +4,18 @@
     return posts
       .filter( post => String(post.tool) == String(tool._id))
       .length;
-
   }
 %>
 
+<a class="tool" href="/posts/tool/<%= tool._id %>">
 <div class="card">
   <div class="card-content">
     <div class="media">
       <div class="media-content">
         <h2 class="title is-8"><%= tool.name %></h2>
-        <span class="is-pulled-right"><%= countContribs(posts, tool) %> contribution<%if (countContribs(posts, tool) > 1) { %>s<% } %></span>
-        <% if (isUserLoggedIn) { %>
-        <span class="icon is-large is-pulled-right">
-             <i class="fa fa-home">
-                <a href="/post/<%= tool._id %>">+</a>     
-            </i> 
-        </span>
-        <% } %>
+        <span><%= countContribs(posts, tool) %> contribution<%if (countContribs(posts, tool) > 1) { %>s<% } %></span>
       </div>
     </div>
-
-    <a href="/gotcha/<%= tool._id %>" class="tile is-full-width">Gotchas</a>
-    <a href="/awesome/<%= tool._id %>" class="tile is-full-width">Awesomes</a>
-    <a href="/doc/<%= tool._id %>" class="tile is-full-width">Docs</a>
-    
   </div>
 </div>
+</a>
