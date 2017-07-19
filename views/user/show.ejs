@@ -1,20 +1,26 @@
-<% if (isUserLoggedIn && isUserAdmin) { %>
-  
-<h1>User Data</h1>
-<a href='/admin/user/<%= user._id %>/edit'>edit user</a>
 
-<% } %>
 
-<br>
-<p>Email: <%= user.email %></p>
-<p>Username: <%= user.username %></p>
-<p>Image URL: <img class='user-image' src='<%= user.imageUrl %> '></p>
 
-<% if (isUserLoggedIn && isUserAdmin) { %>
-
-<p>Role: <%= user.role %></p>
-
-<br>
-<a href='/admin/users'>back</a>
-
-<% } %>
+<section class="media user">
+  <figure class="media-left">
+    <p class="image is-128x128">
+      <img src="<%= user.imageUrl %>">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong><%= user.username %>
+        <br>
+        </strong> <small><%= user.email %></small> 
+        <br>
+        <strong>role: <%= user.role %></strong>
+      </p>
+    </div>
+    <nav class="level is-mobile">
+      <div class="level-left">
+          <a class="level-item" href="/admin/user/<%= user._id %>">edit</a>
+      </div>
+    </nav>
+  </div>
+</section>

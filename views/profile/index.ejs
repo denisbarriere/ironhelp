@@ -1,12 +1,8 @@
 
 <h1>Hi <% if (user.username) { %> <%= user.username %> <% } else { %> <%= user.email %> <% } %></h1>
 <br>
-<h2>My Profile</h2>
 
 <%- include('../user/show') %>
-
-<br>
-<p><a href='/profile/<%= user._id %>/edit'>Edit My Profile</a></p>
 
 <br>
 <p><a href='/profile/posts/<%= user._id %>'>My Posts</a></p>

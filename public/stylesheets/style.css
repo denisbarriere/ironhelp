@@ -89,6 +89,14 @@ a {
 	overflow-y: auto;
 }
 
+
+/* USERS */
+.user {
+	border: 2px solid rgb(3,203,162);
+	padding: 20px;
+	margin: 10px;
+}
+
 /* POSTS */
 .post {
 	border: 2px solid rgb(3,203,162);
@@ -96,6 +104,7 @@ a {
 	margin: 10px;
 }
 
+/* POSTS */
 .post .expand {
 	background-color: rgb(3,203,162);
 	height: 50px;
