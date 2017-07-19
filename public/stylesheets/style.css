@@ -107,3 +107,11 @@ a {
 	background-color: rgb(245,245,245);
 	margin: 10px;
 }
+
+.post .icon {
+	color: rgb(3,203,162);
+}
+
+.post .description .icon {
+	color: white;
+}

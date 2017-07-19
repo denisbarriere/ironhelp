@@ -19,11 +19,21 @@
                 <p class="title is-4"><%= post.summary %></p>
                 <p class="subtitle is-6"><%= post.user.username %></p>
             </div>
+            <div class="media-right">
+                <span class="icon is-medium">
+                    <i class="fa fa-pencil-square"></i>
+                </span>
+            </div>
+            <div class="media-right">
+                <span class="icon is-medium">
+                    <i class="fa fa-times-circle"></i>
+                </span>
+            </div>
         </div>
     </div>
 
     <div class="card-content is-paddingless">
-        <div class="content">
+        <div class="content description">
             <div id="expand_<%= post._id %>" class="expand" onclick="toggle('<%= post._id %>')">
                 <span class="icon is-large">
                     <i class="fa fa-angle-down"></i>
