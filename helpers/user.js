@@ -100,7 +100,7 @@ module.exports = {
     const userUpdate = {
         email: req.body.email,
         username: req.body.username,
-        password: hashPass,
+        // password: hashPass,
         imageUrl: req.body.imageUrl,   
     };
 
