@@ -20,4 +20,42 @@
       </div>
     </div>
   </div>  
+
+  <div class="hero-foot">
+    <div class="container">
+      <nav class="tabs is-boxed">
+        <ul id="tab-list">
+          <li :class="getTabClasses('profile')">
+            <a href="/profile">Profile</a>
+          </li>
+          <li :class="getTabClasses('posts')">
+            <a href="/profile/posts">Posts</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
 </section>
+
+<script>
+    new Vue({
+        el: '#tab-list',
+        data: {},
+        methods: {
+
+            getTabClasses: function (type) {
+
+                let tabClasses = [];
+
+                if (location.href.indexOf(`/${type}`) > -1) {
+                    tabClasses = ['is-active'];
+                }
+
+                return tabClasses;
+            }
+        },
+
+    })
+
+</script>

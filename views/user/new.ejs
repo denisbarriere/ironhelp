@@ -1,0 +1,67 @@
+<%- include('../../partials/hero/admin') %>
+
+<form class="hero-body" action='/admin/users' method='POST'>
+  <div class="container">
+    <div class="columns is-vcentered">
+      <div class="column is-6 is-offset-3">
+        <h1 class="title">
+          Create User
+        </h1>
+        <div class="box">
+          <label class="label">Username</label>
+          <p class="control">
+            <input class="input" type="text" placeholder="janedoe" name="username">
+          </p>
+          
+          <br>
+          <label class="label">Email</label>
+          <p class="control">
+            <input class="input" type="text" placeholder="jane@doe.com" name="email" required>
+          </p>
+
+          <br>
+          <label class="label" for='bio'>Bio</label>
+          <p class="control">
+            <textarea class="textarea" name='bio' id='bio' placeholder="Write something about you here" rows="10" cols="50"></textarea>
+          </p>
+          <br>
+          <label class="label">Image Url</label>
+          <p class="control">
+            <input class="input" type="text" placeholder="image url" name="imageUrl">
+          </p>
+
+          <% if (isUserLoggedIn && isUserAdmin) { %>
+          <br>
+          <label for='role'>User Role</label>
+          <br>
+          <input type='radio' name='role' value='user' checked='checked'> User<br>
+          <input type='radio' name='role' value='admin'> Admin<br>
+          
+          <% } %>
+          
+          <hr>
+          <label class="label">Password</label>
+          <p class="control">
+            <input class="input" type="password" name="password" placeholder="●●●●●●●" required>
+          </p>
+          <br>
+          <label class="label">Confirm Password</label>
+          <p class="control">
+            <input class="input" type="password" name="password-confirm" placeholder="●●●●●●●" required>
+          </p> 
+
+          <hr>
+          <div class="field is-grouped">
+            <p class="control">
+              <button class="button is-primary">Create Account</button>
+            </p>
+            <p class="control">
+            <a class="button is-default" href="/admin/users">Cancel</a>
+            </p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</form>

@@ -60,7 +60,7 @@ router.get('/:user_id/edit',
 // On edit user form submit
 router.post('/:user_id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
-  userHelper.editUser
+  (req, res, next) => { userHelper.editUser(true, req, res, next); }
 );
 
 module.exports = router;
