@@ -1,27 +1,63 @@
-<h1>New User</h1>
+<%- include('../../partials/hero/admin') %>
 
-<form id='admin-user-new' action='/admin/users' method='POST'>
+<form class="hero-body" action='/admin/users' method='POST'>
+  <div class="container">
+    <div class="columns is-vcentered">
+      <div class="column is-4 is-offset-4">
+        <h1 class="title">
+          Create User
+        </h1>
+        <div class="box">
+          <label class="label">Username</label>
+          <p class="control">
+            <input class="input" type="text" placeholder="jsmith" name="username"'>
+          </p>
+          
+          <br>
+          <label class="label">Email</label>
+          <p class="control">
+            <input class="input" type="text" placeholder="jsmith@example.org" name="email"'>
+          </p>
 
-  <label for='username'>Username</label>
-  <input type='text' id='username' name='username'>
+          <br>
+          <label class="label" for='bio'>Bio</label>
+          <p class="control">
+            <textarea class="textarea" name='bio' id='bio' placeholder="Write something about you here" rows="10" cols="50"></textarea>
+          </p>
+          <br>
+          <label class="label">Image Url</label>
+          <p class="control">
+            <input class="input" type="text" placeholder="image url" name="imageUrl">
+          </p>
 
-  <label for='email'>Email</label>
-  <input type='email' name='email' id='email' required>
+          <% if (isUserLoggedIn && isUserAdmin) { %>
+          <br>
+          <label for='role'>User Role</label>
+          <br>
+          <input type='radio' name='role' value='user' checked='checked'> User<br>
+          <input type='radio' name='role' value='admin'> Admin<br>
+          
+          <% } %>
+          
+          <hr>
+          <label class="label">Password</label>
+          <p class="control">
+            <input class="input" type="password" name="password" placeholder="●●●●●●●">
+          </p>
+          <br>
+          <label class="label">Confirm Password</label>
+          <p class="control">
+            <input class="input" type="password" name="password-confirm" placeholder="●●●●●●●">
+          </p> 
 
-  <label for='bio'>Bio</label>
-  <textarea class="textarea" name='bio' id='bio' placeholder="Write something about you here" rows="10" cols="50"></textarea>
-
-  <label for='image-url'>Profile Image URL</label>
-  <input type='text' name='imageUrl' id='image-url'>
-
-  <label for='role'>User Role</label>
-  <input type='radio' name='role' value='user' checked='checked'> User<br>
-  <input type='radio' name='role' value='admin'> Admin<br>
-
-  <label for='password'>Password</label>
-  <input type='password' name='password' id='password' required></input>
-
-  <button type='submit'>Create user</button>
-  <a href='/admin/users'>Cancel</a> 
+          <hr>
+          <p class="control">
+            <button class="button is-primary">Create Account</button>
+            <a class="button is-default" href="/admin/users">Cancel</a>
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 </form>
-

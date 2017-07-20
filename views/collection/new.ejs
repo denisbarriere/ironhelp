@@ -1,17 +1,23 @@
-<h1>New <%= collectionName.charAt(0).toUpperCase() %><%= collectionName.slice(1) %></h1>
+<%- include('../partials/hero/admin') %>
 
-<form id='admin-new' action='/admin/<%= collectionNamePlural %>' method='POST'>
+<section class="section">
+  <div class="container">
 
-  <label for='name'>Name</label>
-  <input type='text' id='name' name='name' required autofocus>
+    <h1>New <%= collectionName.charAt(0).toUpperCase() %><%= collectionName.slice(1) %></h1>
 
-  <label for='image-url'>Image URL</label>
-  <input type='text' id='image-url' name='imageUrl'>
+    <form id='admin-new' action='/admin/<%= collectionNamePlural %>' method='POST'>
 
-  <label for='description'>Description</label>
-  <input type='text' id='description' name='description'></input>
+      <label for='name'>Name</label>
+      <input type='text' id='name' name='name' required autofocus>
 
-  <button type='submit'>Create <%= collectionName %></button>
-  <a href='/admin/<%= collectionNamePlural %>'>Cancel</a> 
-</form>
+      <label for='image-url'>Image URL</label>
+      <input type='text' id='image-url' name='imageUrl'>
 
+      <label for='description'>Description</label>
+      <input type='text' id='description' name='description'></input>
+
+      <button type='submit'>Create <%= collectionName %></button>
+      <a href='/admin/<%= collectionNamePlural %>'>Cancel</a> 
+    </form>
+  </div>
+</section>

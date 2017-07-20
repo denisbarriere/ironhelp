@@ -42,9 +42,15 @@
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
+          <% if (onProfile) { %>
           <a class="button is-primary level-item" href="/profile/<%= user._id %>/edit">Edit</a>
+          <% } else {%>
+          <a class="button is-primary level-item" href="/admin/user/<%= user._id %>/edit">Edit</a>
+          <% } %>
           <% if( isUserAdmin ) { %>
-          <a class="button is-danger level-item" href="/admin/delete/<%= user._id %>">Delete</a>
+          <form class='admin-list__delete' action='/admin/user/<%= user._id %>/delete' method='POST'>
+            <button class="button is-danger level-item">Delete</button>
+          </from>
           <% } %>
       </div>
     </nav>
