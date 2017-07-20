@@ -2,6 +2,7 @@
   <%- include('../partials/hero/admin') %>
 <% } %>
 <% if(onProfile) { %>
+  <%- include('../partials/hero/profile') %>
   <form class="hero-body" action='/profile/<%= user._id %>' method='POST'>
 <% } else { %>
   <form class="hero-body" action='/admin/user/<%= user._id %>' method='POST'>
@@ -15,13 +16,13 @@
         <div class="box">
           <label class="label">Username</label>
           <p class="control">
-            <input class="input" type="text" placeholder="jsmith" name="username" value='<%= user.username %>'>
+            <input class="input" type="text" placeholder="janedoe" name="username" value='<%= user.username %>'>
           </p>
           
           <br>
           <label class="label">Email</label>
           <p class="control">
-            <input class="input" type="text" placeholder="jsmith@example.org" name="email" value='<%= user.email %>'>
+            <input class="input" type="text" placeholder="jane@doe.com" name="email" value='<%= user.email %>' required>
           </p>
 
           <br>
@@ -47,18 +48,22 @@
           <hr>
           <label class="label">Password</label>
           <p class="control">
-            <input class="input" type="password" name="password" value="<%= user.password %>" placeholder="●●●●●●●">
+            <input class="input" type="password" name="password" value="<%= user.password %>" placeholder="●●●●●●●" required>
           </p>
           <br>
           <label class="label">Confirm Password</label>
           <p class="control">
-            <input class="input" type="password" name="password-confirm" value="<%= user.password %>" placeholder="●●●●●●●">
+            <input class="input" type="password" name="password-confirm" value="<%= user.password %>" placeholder="●●●●●●●" required>
           </p> 
 
           <hr>
           <p class="control">
             <button class="button is-primary">Update</button>
-            <a class="button is-default">Cancel</a>
+            <% if(onProfile) { %>
+              <a class="button is-default" href="/profile">Cancel</a> %>
+            <% } else { %>
+              <a class="button is-default" href="/admin/users">Cancel</a> %>
+            <% } %>              
           </p>
         </div>
         
