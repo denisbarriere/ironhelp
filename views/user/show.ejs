@@ -47,10 +47,11 @@
           <% } else {%>
           <a class="button is-primary level-item" href="/admin/user/<%= user._id %>/edit">Edit</a>
           <% } %>
-          <% if( isUserAdmin ) { %>
+          <% if( isUserAdmin && onProfile === false && user._id != currentUser.user._id) { %>
+          <% console.log("User id: "+ user._id+ " Email: " + user.email);%>
           <form class='admin-list__delete' action='/admin/user/<%= user._id %>/delete' method='POST'>
             <button class="button is-danger level-item">Delete</button>
-          </from>
+          </form>
           <% } %>
       </div>
     </nav>
