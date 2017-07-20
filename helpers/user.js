@@ -26,6 +26,7 @@ module.exports = {
     const userInfo = {
       email: req.body.email,
       username: req.body.username,
+      bio: req.body.bio,
       password: hashPass,
       imageUrl: req.body.imageUrl,
       role: req.body.role.toUpperCase(),
@@ -92,6 +93,7 @@ module.exports = {
     const userUpdate = {
         email: req.body.email,
         username: req.body.username,
+        bio: req.body.bio,
         password: req.body.password,
         imageUrl: req.body.imageUrl,   
     };

@@ -1,5 +1,9 @@
-<section class="media user">
-  <figure class="media-left">
+<% if( onProfile ) { %>
+  <section class="media">
+<% } else { %>
+  <section class="media user-list">
+<% } %>
+    <figure class="media-left">
     <p class="image is-128x128">
       <img src="<%= user.imageUrl %>">
     </p>
@@ -7,17 +11,40 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong><%= user.username %>
-        <br>
-        </strong> <small><%= user.email %></small> 
-        <br>
-        <strong>role: <%= user.role %></strong>
+        <% if( user.username ) { %>
+          <strong><%= user.username.charAt(0).toUpperCase() %><%= user.username.slice(1) %></strong>
+          <span> &nbsp; </span>
+          <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <small><%= user.email %></small> 
+        <% } else { %>
+        <span class="icon is-small is-left">
+          <i class="fa fa-envelope"></i>
+        </span>
+        <strong><%= user.email %></strong> 
+        <% } %>
+        
+        <% if( isUserAdmin ) { %>
+          <span> &nbsp; </span>
+          <% if( user.role === 'ADMIN' ) { %>
+            <span class="tag is-warning"><%= user.role %></span>
+          <% } else { %>
+            <span class="tag is-info"><%= user.role %></span>
+          <% } %>
+        <% } %>
+
+        <% if( user.bio ) { %>
+          <p><%= user.bio %></p>
+        <% } %>
       </p>
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
-          <a class="level-item" href="/profile/<%= user._id %>/edit">edit</a>
-          <a class="level-item" href="/admin/delete/<%= user._id %>">delete</a>
+          <a class="button is-primary level-item" href="/profile/<%= user._id %>/edit">Edit</a>
+          <% if( isUserAdmin ) { %>
+          <a class="button is-danger level-item" href="/admin/delete/<%= user._id %>">Delete</a>
+          <% } %>
       </div>
     </nav>
   </div>

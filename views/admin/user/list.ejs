@@ -18,6 +18,6 @@
 
 <% users.forEach( user => { %>
 
-  <%- include('../../user/show', {user}) %>
+  <%- include('../../user/show', { user, onProfile: false }) %>
 
 <% }); %>

@@ -5,12 +5,12 @@
       <div class="columns is-vcentered">
         <div class="column">
           <p class="title">
-            Your Profile
+            Iron Helper Center
           </p>
           <p class="subtitle">
-            This is your space. Here, you can <strong>edit your profile</strong> and also manage your posts!
+            This is your space where you can do a few things.
             <br>
-            <strong>Choose a tool that's f-ing with you</strong>
+            You can basically <strong>edit your profile</strong> and <strong>manage your posts</strong>!
           </p>
         </div>
          <div class="column is-narrow">
@@ -20,18 +20,21 @@
         </div> 
       </div>
     </div>
-  </div>
-  
+  </div>  
 </section>
 
 <section class="section">
   <div class="container">
-    <h1>Hi <% if (user.username) { %> <%= user.username %> <% } else { %> <%= user.email %> <% } %></h1>
-    <br>
+    <h1 class="title">
+      Your Profile
+    </h1>
 
-    <%- include('../user/show', {user} ) %>
+    <%- include('../user/show', { user, onProfile: true } ) %>
 
-    <br>
+    <br><br>
+    <h1 class="title">
+      Your Posts
+    </h1>
     <p><a href='/profile/posts/<%= user._id %>'>My Posts</a></p>
   </div>
 </section>
