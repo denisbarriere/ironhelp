@@ -10,6 +10,16 @@
 **/
 .hero-foot { padding: 0 1.5rem; }
 
+/* on HOMEPAGE */
+span.home__subtitle--green {
+  color: #00d1b2;
+  font-weight: bold;
+}
+
+/**
+ * POSTS
+**/
+.position-right { float: right; }
 
 /**
  * LOGIN / SIGN UP
