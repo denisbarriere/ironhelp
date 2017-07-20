@@ -140,7 +140,7 @@
 
                 let url = '/profile/post/new';
 
-                if (this.user && this.user.role === 'ADMIN') {
+                if (location.href.indexOf('/admin/') > -1) {
                     url = '/admin/post/new';
                 }
 
