@@ -116,10 +116,12 @@ a {
 
 
 /* USERS */
-.user {
-	border: 2px solid rgb(3,203,162);
+.media + .media { border-top: 1px solid rgb(3,203,162); }
+
+.user-list {
+	border: 1px solid rgb(3,203,162);
 	padding: 20px;
-	margin: 10px;
+	margin: 10px; 
 }
 
 /* POSTS */
