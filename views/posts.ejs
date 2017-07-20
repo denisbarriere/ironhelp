@@ -2,13 +2,14 @@
 
     <section v-if="isAdmin" class="hero is-primary">
     
-            <%- include('./partials/hero/admin') %>
+        <%- include('./partials/hero/admin') %>
+
 
     </section>
 
     <section v-else-if="isProfile" class="hero is-primary">
     
-            <%- include('./partials/hero/profile') %>
+        <%- include('./partials/hero/profile') %>
 
     </section>
 
@@ -40,6 +41,9 @@
 
     <section class="section">
         <div class="container">
+             <h1 v-if="isProfile" class="title">
+                Your Posts
+            </h1>
             <div id="posts-tools">
 
                 <!-- <button @click="refresh('Gotcha')" class="button is-primary">Gotcha</button>
