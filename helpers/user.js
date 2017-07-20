@@ -12,7 +12,7 @@ module.exports = {
       if (err) {
         next(err);
       } else {
-        res.render('admin/user/list', { users, loggedInUser: req.user });
+        res.render('user/list', { users, loggedInUser: req.user });
       }
     });
   },
@@ -88,7 +88,7 @@ module.exports = {
     });
 
   },
-  editUser: (req, res, next) => {
+  editUser: (onProfile, req, res, next) => {
 
     // Retrieve user ID from URL
     const userID = req.params.user_id;
@@ -134,7 +134,7 @@ module.exports = {
         }    
         // If the data was saved properly, then go back to:
         // the user listing page, if you are an admin editing a user
-        if(req.user.role === 'ADMIN') {
+        if(!onProfile) {
           res.redirect('/admin/users');
         // the user profile page, if you are a user editing your profile
         } else {

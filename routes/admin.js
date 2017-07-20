@@ -47,7 +47,7 @@ router.get('/user/new',
   (req, res, next) => {
     
     // Display the new user view
-    res.render('admin/user/new');
+    res.render('user/new');
 });
 
 // On new user form submit
@@ -81,7 +81,7 @@ router.get('/user/:user_id/edit',
 router.post('/user/:user_id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
-  userHelper.editUser
+  (req, res, next) => { userHelper.editUser(false, req, res, next); }
 );
 
 
@@ -215,7 +215,7 @@ router.get('/tool/:id/edit',
   (req, res, next) => modelHelper.showEditDocumentForm(Tool, req, res, next)
 );
 
-// On edit user form submit
+// On edit form submit
 router.post('/tool/:id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
@@ -283,7 +283,7 @@ router.get('/category/:id/edit',
   (req, res, next) => modelHelper.showEditDocumentForm(Category, req, res, next)
 );
 
-// On edit user form submit
+// On edit document form submit
 router.post('/category/:id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
