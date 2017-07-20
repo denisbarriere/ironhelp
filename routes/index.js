@@ -8,15 +8,6 @@ const User = require('../models/user');
 
 
 /* GET home page. */
-// router.get('/', function (req, res, next) {
-//   res.render('index');
-// });
-
-router.get('/secret', auth.checkLoggedIn('You must be login', '/login'), function (req, res, next) {
-  res.render('secret', { user: JSON.stringify(req.user) });
-});
-
-
 router.get('/', function (req, res, next) {
   Tool.find((err, tools) => {
     Post.find((err, posts) => {
