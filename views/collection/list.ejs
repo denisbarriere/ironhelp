@@ -1,14 +1,20 @@
-<h1>List of <%= collectionNamePlural %></h1>
-<a href='/admin/<%= collectionName %>/new'>Add a new <%= collectionName %></a>
-<ul class='admin-list'>
-  <% documents.forEach( (item) => { %>
-    <li> <%= item.name %>:
-      <a href='/admin/<%= collectionName %>/<%= item._id %>'>show</a>
-      <span> / </span>
-      <a href='/admin/<%= collectionName %>/<%= item._id %>/edit'>edit</a>
-      <form class='admin-list__delete' action='/admin/<%= collectionName %>/<%= item._id %>/delete' method='POST'>
-        <button type='submit'>Delete</button>
-      </form>
-    </li>
-  <% })%>
-</ul>
+<%- include('../partials/hero/admin') %>
+
+<section class="section">
+  <div class="container">
+    <h1>List of <%= collectionNamePlural %></h1>
+    <a href='/admin/<%= collectionName %>/new'>Add a new <%= collectionName %></a>
+    <ul class='admin-list'>
+      <% documents.forEach( (item) => { %>
+        <li> <%= item.name %>:
+          <a href='/admin/<%= collectionName %>/<%= item._id %>'>show</a>
+          <span> / </span>
+          <a href='/admin/<%= collectionName %>/<%= item._id %>/edit'>edit</a>
+          <form class='admin-list__delete' action='/admin/<%= collectionName %>/<%= item._id %>/delete' method='POST'>
+            <button type='submit'>Delete</button>
+          </form>
+        </li>
+      <% })%>
+    </ul>
+  </div>
+</section>

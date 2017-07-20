@@ -1,8 +1,12 @@
-<h1>Welcome back <%= user.username %>, </h1>
-<br>
-<ul>
-	<li><a href="/admin/users"><span class="carret-right" ></span> Users</a>
-	<li><a href="/admin/posts"><span class="carret-right" ></span> Posts</a>
-	<li><a href="/admin/tools"><span class="carret-right" ></span> Tools</a>
-	<li><a href="/admin/categories"><span class="carret-right" ></span> Categories</a>
-</ul>
+<%- include('../partials/hero/admin') %>
+
+<section class="section">
+  <div class="container">
+		<ul>
+			<li><a href="/admin/users"><span class="carret-right" ></span> Users</a>
+			<li><a href="/admin/posts"><span class="carret-right" ></span> Posts</a>
+			<li><a href="/admin/tools"><span class="carret-right" ></span> Tools</a>
+			<li><a href="/admin/categories"><span class="carret-right" ></span> Categories</a>
+		</ul>
+	</div>
+</section>

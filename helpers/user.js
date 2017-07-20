@@ -79,8 +79,12 @@ module.exports = {
         return next(err);
       }
 
-      // Display the edit user view
-      res.render('user/edit', { user })
+      // Display the edit user view, based on user
+      if(req.user.role === 'ADMIN') {
+        res.render('user/edit', { user, onProfile: false });
+      } else {
+        res.render('user/edit', { user, onProfile: true });
+      }
     });
 
   },
