@@ -1,7 +1,10 @@
+<% if (isUserAdmin && !onProfile) { %>
+  <%- include('../partials/hero/admin') %>
+<% } %>
 <% if(onProfile) { %>
   <form class="hero-body" action='/profile/<%= user._id %>' method='POST'>
-<% } else { %>}
-  <form class="hero-body" action='/admin/users' method='POST'>
+<% } else { %>
+  <form class="hero-body" action='/admin/user/<%= user._id %>' method='POST'>
 <% } %>
   <div class="container">
     <div class="columns is-vcentered">

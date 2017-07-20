@@ -155,7 +155,6 @@ module.exports = {
         return next(err);
       }
       // If the user was properly deleted, then go back to the user listing page
-      console.log('user', user);
       res.redirect('/admin/users');
     });
 
