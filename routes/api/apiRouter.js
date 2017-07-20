@@ -32,6 +32,38 @@ router.get('/posts', function(req, res, next) {
     });
 });
 
+// get posts filtered by tool
+router.get('/posts/tool/:tool_id', function(req, res, next) {
+  Post.find({ tool: req.params.tool_id})
+    .populate('user')
+    .populate('category')
+    .populate('tool')
+    .exec( (err, posts) => {
+        if (err) return res.status(500);
+        const payload = {
+          posts,
+          loggedIn : req.user
+        }
+        res.status(200).json(payload);
+    });
+});
+
+// get posts limited to current user
+router.get('/posts/user', function(req, res, next) {
+  Post.find({ user : req.user._id})
+    .populate('user')
+    .populate('category')
+    .populate('tool')
+    .exec( (err, posts) => {
+        if (err) return res.status(500);
+        const payload = {
+          posts,
+          loggedIn : req.user
+        }
+        res.status(200).json(payload);
+    });
+});
+
 
 
 module.exports = router;
