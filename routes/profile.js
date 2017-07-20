@@ -24,7 +24,7 @@ router.get('/',
 /**
  * MY POSTS
 **/
-router.get('/posts/:user_id', 
+router.get('/posts', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   (req, res, next) => { postHelper.showPosts(true, req, res, next); }
 );

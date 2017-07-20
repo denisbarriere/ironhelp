@@ -1,4 +1,4 @@
-<%- include('../partials/hero/profile') %>
+<%- include('../partials/hero/profile', { user }) %>
 
 <section class="section">
   <div class="container">
@@ -7,12 +7,6 @@
     </h1>
 
     <%- include('../user/show', { user, onProfile: true } ) %>
-
-    <br><br><br>
-    <h1 class="title">
-      Your Posts
-    </h1>
-    <%- include('../posts', { user, onProfile: true } ) %>
     
   </div>
 </section>

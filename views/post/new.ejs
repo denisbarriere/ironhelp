@@ -1,77 +1,75 @@
-<!-- <form class="hero-body" action='/signup' method='POST'> -->
 <% if (isUserLoggedIn && isUserAdmin) { %>
     <form class="hero-body" action='/admin/posts' method='post'>
-        <% } else { %>
-            <form class="hero-body" action='/profile/posts' method='post'>
-                <% } %>
-                    <div class="container">
-                        <div id="signup" class="columns is-vcentered">
-                            <div class="column is-8 is-offset-2">
-                                <h1 class="title">
-                                    New Post!
-                                </h1>
-                                <div class="box">
-                                    <label class="label">Title</label>
-                                    <p class="control">
-                                        <input class="input" type="text" placeholder="title" name="title">
-                                        
-                                    </p>
-                                    <br>
-                                    <label class="label">Category</label>
-                                    <p class="control">
-                                        <span class='select'>
-                <select name='category' required>
-                    <option disabled selected value=''> Select Category</option>       
-                    <% categories.forEach( category => { %>
-                        <option value='<%= category._id %>'><%= category.name %></option>
-                    <% }); %>  
-                </select>
-            </span>
-                                    </p>
-                                    <br>
-                                    <label class="label">Tool</label>
-                                    <p class="control">
-                                        <span class='select'>
-                <select name='tool' required>
-                    <option disabled selected value=''> Select Tool</option>       
-                    <% tools.forEach( tool => { %>
-                        <option value='<%= tool._id %>'><%= tool.name %></option>
-                    <% }); %>  
-                </select>
-            </span>
-                                    </p>
-                                    <br>
+<% } else { %>
+    <form class="hero-body" action='/profile/posts' method='post'>
+<% } %>
+    <div class="container">
+        <div id="signup" class="columns is-vcentered">
+            <div class="column is-8 is-offset-2">
+                <h1 class="title">
+                    New Post!
+                </h1>
+                <div class="box">
+                    <label class="label">Title</label>
+                    <p class="control">
+                        <input class="input" type="text" placeholder="title" name="title">                             
+                    </p>
+                    <br>
+                    <label class="label">Category</label>
+                    <p class="control">
+                        <span class='select'>
+                            <select name='category' required>
+                                <option disabled selected value=''> Select Category</option>       
+                                <% categories.forEach( category => { %>
+                                <option value='<%= category._id %>'><%= category.name %></option>
+                                <% }); %>  
+                            </select>
+                        </span>
+                    </p>
+                    <br>
+                    <label class="label">Tool</label>
+                    <p class="control">
+                        <span class='select'>
+                            <select name='tool' required>
+                                <option disabled selected value=''> Select Tool</option>       
+                                <% tools.forEach( tool => { %>
+                                <option value='<%= tool._id %>'><%= tool.name %></option>
+                                <% }); %>  
+                            </select>
+                        </span>
+                    </p>
+                    <br>
 
-                                    <div class='field'>
-                                        <label class='label' required>Summary</label>
-                                        <p class='control'>
-                                            <textarea class='textarea' placeholder='Description' name='summary'></textarea>
-                                        </p>
-                                    </div>
+                    <div class='field'>
+                        <label class='label' required>Summary</label>
+                        <p class='control'>
+                            <textarea class='textarea' placeholder='Description' name='summary'></textarea>
+                        </p>
+                    </div>
 
-                                    <div class='field'>
-                                        <label class='label' required>Content</label>
-                                        <p class='control'>
-                                            <textarea class='textarea' placeholder='Content' name='content'></textarea>
-                                        </p>
-                                    </div>
+                    <div class='field'>
+                        <label class='label' required>Content</label>
+                        <p class='control'>
+                            <textarea class='textarea' placeholder='Content' name='content'></textarea>
+                        </p>
+                    </div>
 
 
-                                    <div class='field is-grouped'>
-                                        <p class='control'>
-                                            <button type="submit" class='button is-primary'>Submit</button>
-                                        </p>
-                                        <p class='control'>
-                                            <% if(isUserLoggedIn && isUserAdmin) { %>
-                                                <a class='button is-link' href='/admin/posts'>Cancel</button>
-          <% } else { %>
-            <a class='button is-link' href='/'>Cancel</button>
-          <% } %>
-        </p>
+                    <div class='field is-grouped'>
+                        <p class='control'>
+                            <button type="submit" class='button is-primary'>Submit</button>
+                        </p>
+                        <p class='control'>
+                            <% if(isUserLoggedIn && isUserAdmin && !onProfile) { %>
+                                <a class='button is-link' href='/admin/posts'>Cancel</button>
+                            <% } else { %>
+                                <a class='button is-link' href='/profile'>Cancel</button>
+                            <% } %>
+                        </p>
+                    </div>
+
+                </div>      
+            </div>
+        </div>
     </div>
-
-        </div>      
-      </div>
-    </div>
-  </div>
 </form>
