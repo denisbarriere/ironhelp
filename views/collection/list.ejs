@@ -2,19 +2,48 @@
 
 <section class="section">
   <div class="container">
-    <h1>List of <%= collectionNamePlural %></h1>
-    <a href='/admin/<%= collectionName %>/new'>Add a new <%= collectionName %></a>
-    <ul class='admin-list'>
-      <% documents.forEach( (item) => { %>
-        <li> <%= item.name %>:
-          <a href='/admin/<%= collectionName %>/<%= item._id %>'>show</a>
-          <span> / </span>
-          <a href='/admin/<%= collectionName %>/<%= item._id %>/edit'>edit</a>
-          <form class='admin-list__delete' action='/admin/<%= collectionName %>/<%= item._id %>/delete' method='POST'>
-            <button type='submit'>Delete</button>
-          </form>
-        </li>
-      <% })%>
-    </ul>
+    <h1 class="title">List of <%= collectionNamePlural %></h1>
+    <h2 class="subtitle">Manage <%= collectionNamePlural %> data</h2>
+    
+    <hr>
+    <div class="content">
+
+      <a class="button is-link" href='/admin/<%= collectionName %>/new'>Add a new <%= collectionName %></a>
+
+        <% documents.forEach( item => { %>
+
+          <section class="media user-list">
+            <figure class="media-left">
+              <p class="image is-128x128">
+                <img src="<%= item.imageUrl %>">
+              </p>
+            </figure>
+
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong><%= item.name %></strong>
+                  <p> <%= item.description %></p>
+                </p>
+              </div>
+
+              <nav class="level is-mobile">
+                <div class="level-left">
+                  <a class="button is-primary level-item" href="/admin/<%= collectionName %>/<%= item._id %>/edit">Edit</a>
+                    <form id="delete-user" class='admin-list__delete' action='/admin/<%= collectionName %>/<%= item._id %>/delete' method='POST'>
+                      <button class="button is-danger is-outlined level-item"><span>Delete</span>
+                        <span class="icon is-small">
+                          <i class="fa fa-times"></i>
+                        </span>
+                      </button> 
+                    </form>
+                </div>
+              </nav>
+            </div>
+          </section>
+
+        <% }); %>
+
+    </div>
   </div>
 </section>
