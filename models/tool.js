@@ -6,7 +6,10 @@ const schema = new Schema({
         type: String,
         required: true
     },
-    imageUrl: String,
+    imageUrl: {
+        type: String,
+        default: 'http://bulma.io/images/placeholders/128x128.png'
+    },
     description: String,
     // web page??? MAYBE
 });

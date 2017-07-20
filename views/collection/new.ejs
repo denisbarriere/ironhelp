@@ -1,23 +1,42 @@
 <%- include('../partials/hero/admin') %>
 
-<section class="section">
+<form class="hero-body" action='/admin/users' method='POST'>
   <div class="container">
+    <div class="columns is-vcentered">
+      <div class="column is-4 is-offset-4">
+        <h1 class="title">
+          New <%= collectionName.charAt(0).toUpperCase() %><%= collectionName.slice(1) %>
+        </h1>
+        <div class="box">
+          <label class="label" for='name'>Name</label>
+          <p class="control">
+            <input class="input" type='text' id='name' name='name' required autofocus>
+          </p>
+          
+          <br>
+          <label class="label" for='image-url'>Image URL</label>
+          <p class="control">
+            <input class="input" type='text' id='image-url' name='imageUrl'>
+          </p>
 
-    <h1>New <%= collectionName.charAt(0).toUpperCase() %><%= collectionName.slice(1) %></h1>
+          <br>
+          <label class="label" for='description'>Description</label>
+          <p class="control">
+            <input class="input" type='text' id='description' name='description'></input>
+          </p> 
 
-    <form id='admin-new' action='/admin/<%= collectionNamePlural %>' method='POST'>
-
-      <label for='name'>Name</label>
-      <input type='text' id='name' name='name' required autofocus>
-
-      <label for='image-url'>Image URL</label>
-      <input type='text' id='image-url' name='imageUrl'>
-
-      <label for='description'>Description</label>
-      <input type='text' id='description' name='description'></input>
-
-      <button type='submit'>Create <%= collectionName %></button>
-      <a href='/admin/<%= collectionNamePlural %>'>Cancel</a> 
-    </form>
+          <hr>
+          <div class="field is-grouped">
+            <p class="control">
+              <button class="button is-primary">Create <%= collectionName %></button>
+            </p>
+            <p class="control">
+            <a class="button is-default" href="/admin/<%= collectionNamePlural %>">Cancel</a>
+            </p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
   </div>
-</section>
+</form>

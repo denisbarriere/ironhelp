@@ -7,17 +7,17 @@ const Category = require('../models/category');
 const categories = [
     {
         name: 'Gotchas',
-        imageUrl: '',
+        imageUrl: 'http://bulma.io/images/placeholders/128x128.png',
         description: ''
     },
     {
         name: 'Awesomes',
-        imageUrl: '',
+        imageUrl: 'http://bulma.io/images/placeholders/128x128.png',
         description: ''
     },
     {
         name: 'Docs',
-        imageUrl: '',
+        imageUrl: 'http://bulma.io/images/placeholders/128x128.png',
         description: ''
     },
 ]

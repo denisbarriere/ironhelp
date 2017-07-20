@@ -1,4 +1,4 @@
-<%- include('../../partials/hero/admin') %>
+<%- include('../partials/hero/admin') %>
 
 <section class="section">
   <div class="container">
@@ -12,7 +12,7 @@
 
         <% users.forEach( user => { %>
 
-          <%- include('../../user/show', { user, onProfile: false }) %>
+          <%- include('../user/show', { user, onProfile: false }) %>
 
         <% }); %>
     </div>

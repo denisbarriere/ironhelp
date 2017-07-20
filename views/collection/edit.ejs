@@ -1,24 +1,37 @@
 <%- include('../partials/hero/admin') %>
 
-<section class="section">
+<form class="hero-body" id='admin-edit' action='/admin/<%= collectionName %>/<%= document._id %>' method='POST'>
   <div class="container">
-    <h1>Edit <%= collectionName.charAt(0).toUpperCase() %><%= collectionName.slice(1) %></h1>
+    <div class="columns is-vcentered">
+      <div class="column is-6 is-offset-3">
+        <h1 class="title">
+          Edit <%= collectionName.charAt(0).toUpperCase() %><%= collectionName.slice(1) %>
+        </h1>
+        <div class="box">
+          <label class="label">Name</label>
+          <p class="control">
+            <input class="input" type="text" name='name' value='<%= document.name %>' required>
+          </p>
 
-    <form id='admin-edit' action='/admin/<%= collectionName %>/<%= document._id %>' method='POST'>
+          <br>
+          <label class="label" for='image-url'>Image URL</label>
+          <p class="control">
+            <input class="input" type="text" name='imageUrl' value='<%= document.imageUrl %>'>
+          </p>
 
-      <label for='name'>Name</label>
-      <input type='text' id='name' name='name' value='<%= document.name %>' required>
+          <br>
+          <label class="label" for='description'>Description</label>
+          <p class="control">
+            <input class="input" type="text" name='description' value='<%= document.description %>'>
+          </p>
 
-      <label for='image-url'>Image URL</label>
-      <input type='text' id='image-url' name='imageUrl' value='<%= document.imageUrl %>'>
-
-      <label for='description'>Description</label>
-      <input type='text' id='description' name='description' value='<%= document.description %>'>
-        
-      <br>
-      <button type='submit'>Update <%= collectionName.charAt(0).toUpperCase() %><%= collectionName.slice(1) %></button>
-      <a href='/admin/<%= collectionNamePlural %>'>Cancel</a> 
-
-    </form>
+          <hr>
+          <p class="control">
+            <button class="button is-primary">Update</button>
+            <a class="button is-default" href="/admin/<%= collectionNamePlural %>">Cancel</a> %>          
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
+</form>

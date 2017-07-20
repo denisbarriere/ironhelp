@@ -9,6 +9,7 @@
  * HERO BANNER
 **/
 .hero-foot { padding: 0 1.5rem; }
+#carbon > img { margin: 0 auto; }
 
 /* on HOMEPAGE */
 span.home__subtitle--green {
