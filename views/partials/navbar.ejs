@@ -1,43 +1,68 @@
-<% if (isUserLoggedIn && isUserAdmin) { %>
+<div class="container">
+  <nav class="navbar ">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="/images/ironhelp-logo--green.png" alt="Ironhelp: a framework for documentation based on painful experiences" height="28">
+      </a>
 
-<nav class="navbar navbar-default navbar-fixed-top navbar--yellow">
-
-<% } else { %>
-
-<nav class="navbar navbar-default navbar-fixed-top">
-
-<% } %>
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Ironhelp</a>
+      <div class="navbar-burger burger" data-target="navMenuDocumentation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div id="navMenuDocumentation" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item " href="/">
+          Home
+        </a>
+      </div>
+    </div>
 
-      <ul class="nav navbar-nav navbar-right">
-        <% if (isUserLoggedIn) { %>
-          <p class="navbar-text">Signed in as <% if (currentUser.user.username) { %><%= currentUser.user.username %> <% } else { %><%= currentUser.user.email %><%}%></p>
-          <li><a href="/logout">Logout</a></li>
-        <% } else { %>
-          <li><a href="/signup">Signup</a></li>
-          <li><a href="/login">Login</a></li>
+    <div class="navbar-end">
+      <% if (isUserLoggedIn) { %>
+        <p class="navbar-item header-username">
+          Hi <% if (currentUser.user.username) { %><%= currentUser.user.username.charAt(0).toUpperCase() %><%= currentUser.user.username.slice(1) %>!<% } else { %><%= currentUser.user.email %>!<%}%>
+        </p>
+        <a class="navbar-item" href="/profile">
+          Profile
+        </a>
+        <% if (isUserAdmin) { %>
+          <a class="navbar-item" href="/admin">
+            Admin
+          </a>
         <% } %>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/profile">Profile</a></li>
-            <li><a href="/admin">Admin</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+      <% } else { %>
+        <a class="navbar-item" href="/signup">
+          Sign up
+        </a>
+      <% } %>
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <% if (isUserLoggedIn) { %>
+          <p class="control">
+            <a class="button is-primary" href="/logout">
+              <span class="icon">
+                <i class="fa fa-sign-out"></i>
+              </span>
+              <span>Logout</span>
+            </a>
+          </p>
+          <% } else { %>
+          <p class="control">
+            <a class="button is-primary" href="/login">
+              <span class="icon">
+                <i class="fa fa-sign-in"></i>
+              </span>
+              <span>Login</span>
+            </a>
+          </p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>
+
+</div>
