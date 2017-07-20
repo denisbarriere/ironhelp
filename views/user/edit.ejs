@@ -14,6 +14,10 @@
               <p class="control">
                 <input class="input" type="text" placeholder="jsmith@example.org" name="email" value='<%= user.email %>'>
               </p>
+              <label for='bio'>Bio</label>
+              <p class="control">
+                <textarea class="textarea" name='bio' id='bio' placeholder="Write something about you here" rows="10" cols="50"><%= user.bio %></textarea>
+              </p>
               <label class="label">Image Url</label>
               <p class="control">
                 <input class="input" type="text" placeholder="image url" name="imageUrl" value='<%= user.imageUrl %>'>

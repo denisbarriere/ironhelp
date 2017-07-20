@@ -81,6 +81,7 @@ const admins = [
     {
         email: 'jb.tellez@gmail.com',
         username: 'jb',
+        bio: 'JB is a great admin',
         password: hashPass,
         imageUrl: 'https://avatars5.githubusercontent.com/u/364081?v=4&s=400',
         role: 'ADMIN',
@@ -88,6 +89,7 @@ const admins = [
     {
         email:'denis.barriere@gmail.com',
         username: 'denis',
+        bio: 'Denis is a great admin',
         password: hashPass,
         imageUrl: 'https://avatars4.githubusercontent.com/u/28688064?v=4&s=400',
         role: 'ADMIN',
