@@ -1,24 +1,42 @@
-<div class="login">
-  <div class="panel panel-default">
-    <div class="panel-heading">Login</div>
-    <div class="panel-body">
-      <form action="/login" method="POST">
-        <div class="form-group">
-          <label for="usernameInput">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="jane@doe.com" name="email">
-        </div>
-        <div class="form-group">
-          <label for="passwordInput">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password" name="password">
-        </div>
-        <% if ( message != "" ) { %>
-          <div class="alert alert-danger" role="alert"><%= message %></div>
-        <% } %>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
-      </form>  
-      <br>
-      <p>New to IronHelp? <a href="/signup">Create an account <span class="carret-right"></span></a></p>
+<form class="hero-body" action='/login' method='POST'>
+  <div class="container">
+    <div id="login" class="columns is-vcentered">
+      <div class="column is-4 is-offset-4">
+        <h1 class="title">
+          Sign in
+        </h1>
+        <div class="box">
+          <label class="label">Email</label>
+          <p class="control has-icons-left">
+            <input class="input" type="text" placeholder="jane@doe.com" name="email">
+            <span class="icon is-small is-left">
+              <i class="fa fa-envelope"></i>
+            </span>
+          </p>
+          <br>
+          <label class="label">Password</label>
+          <p class="control has-icons-left">
+            <input class="input" type="password" placeholder="Password" name="password">
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+          </p>
+          <br>
+
+          <% if ( message != "" ) { %>
+            <div class="notification is-danger"><%= message %></div>
+          <% } %>
+
+          <p class="control">
+            <button class="button is-primary">Login</button>
+          </p>
+          <hr>
+
+          <p class="control">
+            <p>New to IronHelp? <a href="/signup">Create an account <span class="carret-right"></span></a></p>
+          </p>
+
+        </div>      
+      </div>
     </div>
   </div>
-  
-</div>

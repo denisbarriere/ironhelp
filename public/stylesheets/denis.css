@@ -1,1 +1,19 @@
+/**
+ * HEADER
+**/
+
 .header-username { color: #00d1b2; }
+
+/**
+ * LOGIN / SIGN UP
+**/
+/* Overridde Bulmas' default style .columns:last-child { margin-bottom: 0; }  */
+#login,
+#signup { margin-bottom: 0; }
+
+@media only screen and (max-width: 768px) {
+  #login, #signup {
+    margin-left: .1rem;
+    margin-right: .1rem;
+  }
+}
