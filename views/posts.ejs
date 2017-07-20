@@ -1,21 +1,130 @@
+<div id="posts">
+    <h1>Posts</h1>
+
+    <button @click="refresh('Gotcha')" class="button">gotcha</button>
+    <button @click="refresh('Awesome')" class="button">awesome</button>
+    <button @click="refresh('Doc')" class="button">doc</button>
+
+    <ul v-if="loaded">
+        <li v-for="post in viewPosts">
+            <div class="card post is-paddingless">
+
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-48x48">
+                                <img :src="post.user ? post.user.imageUrl : ''" alt="Image">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4">{{ post.summary }}</p>
+                            <p class="subtitle is-6">{{ post.user ? post.user.username : '' }}</p>
+                            <p>{{ post.category.name }}</p>
+                            <p>{{ post.tool.name }}</p>
+                        </div>
+                        <div v-if="user && user.role === 'ADMIN'" class="admin-controls">
+                            <div class="media-right">
+                                <span class="icon is-medium">
+                    <i class="fa fa-pencil-square"></i>
+                </span>
+                            </div>
+                            <div class="media-right">
+                                <span class="icon is-medium">
+                    <i class="fa fa-times-circle"></i>
+                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card content / description -->
+                <div class="card-content is-paddingless">
+                    <div class="content description">
+                        <div v-if="!isExpanded(post._id)" class="expand" @click.stop="expand(post._id)">
+                            <span class="icon is-large">
+                    <i class="fa fa-angle-down"></i>
+                </span>
+                        </div>
+                        <div v-else class="media-content">
+                            <div class="content section">
+                                {{ post.content }}
+                            </div>
+                            <div class="expand" @click.stop="shrink(post._id)">
+                                <span class="icon is-large">
+                    <i class="fa fa-angle-up"></i>
+                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </li>
+    </ul>
+</div>
 
 <script>
-    function refresh(type) {
-        
-        const segments = window.location.href.split('/');
-        const toolID = segments.pop();
-        location = '/' + type + '/' + toolID;
-        
-    }
+    new Vue({
+        el: '#posts',
+        data: {
+            message: 'foo',
+            posts: [],
+            viewPosts: [],
+            user: undefined,
+            expandedPosts: {},
+            isAdmin: false,
+            loaded: false
+        },
+        methods: {
+
+            expand: function(id) {
+                console.log('expand');
+                this.expandedPosts[id] = true;
+                this.expandedPosts = Object.assign({}, this.expandedPosts);
+            },
+
+            shrink: function(id) {
+                console.log('shrink');
+                this.expandedPosts[id] = false;
+                this.expandedPosts = Object.assign({}, this.expandedPosts);
+            },
+
+            isExpanded: function(id) {
+                return this.expandedPosts[id];
+            },
+
+            refresh: function (category) {
+
+                const toolID = location.href.split('/').pop();
+
+                this.viewPosts = this.posts.filter(post => {
+
+                    const rightCategory = !category || post.category && post.category.name == category;
+
+                    const rightTool = String(post.tool._id) == String(toolID);
+
+                    return rightCategory && rightTool;
+
+                });
+            }
+        },
+
+        created: function () {
+            const segments = window.location.href.split('/');
+            const toolID = segments.pop();
+
+            axios
+                .get('/api/posts')
+                .then(response => {
+                    this.posts = response.data.posts;
+                    this.user = response.data.loggedIn;
+                    this.refresh();
+                    this.loaded = true;
+                })
+        }
+
+    })
+
 </script>
-<h1>Posts</h1>
-<button onclick="refresh('gotcha')" class="button">gotcha</button>
-<button onclick="refresh('awesome')" class="button">awesome</button>
-<button onclick="refresh('doc')" class="button">doc</button>
-<ul>
-    <%posts.forEach( post => { %>
-        <li>
-            <%- include('./partials/post', {post, user}) %>
-        </li>
-        <% }); %>
-</ul>
