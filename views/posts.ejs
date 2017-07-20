@@ -1,5 +1,18 @@
 <div id="posts" class="is-hidden">
-    <section class="hero is-primary">
+
+    <section v-if="isAdmin" class="hero is-primary">
+    
+            <%- include('./partials/hero/admin') %>
+
+    </section>
+
+    <section v-else-if="isProfile" class="hero is-primary">
+    
+            <%- include('./partials/hero/profile') %>
+
+    </section>
+
+    <section v-else class="hero is-primary">
         <div class="hero-body">
             <div class="container">
                 <div class="columns is-vcentered">
@@ -28,11 +41,21 @@
     <section class="section">
         <div class="container">
             <div id="posts-tools">
-                
-                <button @click="refresh('Gotcha')" class="button is-primary">Gotcha</button>
+
+                <!-- <button @click="refresh('Gotcha')" class="button is-primary">Gotcha</button>
                 <button @click="refresh('Awesome')" class="button is-primary">Awesome</button>
                 <button @click="refresh('Doc')" class="button is-primary">Doc</button>
-                <button @click="addPost()" class="button is-primary">Add Post</button>
+                <button @click="addPost()" class="button is-primary">Add Post</button> -->
+                <a @click="refresh('Gotcha')"><span class="tag is-danger is-medium">Gotcha</span></a>
+                <a @click="refresh('Awesome')"><span class="tag is-success is-medium">Awesome</span></a>
+                <a @click="refresh('Doc')"><span class="tag is-warning is-medium">Doc</span></a>
+
+                <a @click="addPost()" class="button is-outlined is-pulled-right">
+                    <span class="icon is-small">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    <span>Add Post</span>
+                </a>
 
                 <ul>
                     <li v-for="post in viewPosts">
@@ -109,7 +132,6 @@
             viewPosts: [],
             user: undefined,
             expandedPosts: {},
-            isAdmin: false,
             toolID: undefined
         },
         methods: {
@@ -146,10 +168,31 @@
                     return !category || post.category && post.category.name == category;
 
                 });
+            },
+
+            getTabClasses: function (type) {
+
+                let tabClasses = [];
+
+                if (location.href.indexOf(`/${type}`) > -1) {
+                    tabClasses = ['is-active'];
+                }
+
+                return tabClasses;
             }
         },
 
         computed: {
+
+            isAdmin: function () {
+
+                return location.href.indexOf('/admin/') > -1; //this.user && this.user.role === 'ADMIN';
+            },
+
+            isProfile: function () {
+
+                return location.href.indexOf('/profile/') > -1; //this.user && this.user.role === 'ADMIN';
+            },
 
             title: function () {
 
@@ -164,7 +207,7 @@
                     title = this.posts[0].tool.name;
 
                 } else if (this.user) {
-                    if (this.user.role === 'ADMIN') {
+                    if (this.isAdmin) {
                         title = 'Fancy Admin!';
                     } else {
                         title = 'Humble user';
@@ -177,7 +220,7 @@
                 return title;
             },
 
-            toolImageUrl: function() {
+            toolImageUrl: function () {
 
                 let url = undefined;
 
