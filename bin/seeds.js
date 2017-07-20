@@ -31,33 +31,21 @@ const tools = [
     },
     {
         name: 'MongoDB',
-        imageUrl: '',
-        description: ''
     },
     {
         name: 'Mongoose',
-        imageUrl: '',
-        description: ''
     },
     {
         name: 'JQuery',
-        imageUrl: '',
-        description: ''
     },
     {
         name: 'Google Maps',
-        imageUrl: '',
-        description: ''
     },
     {
         name: 'NPM',
-        imageUrl: '',
-        description: ''
     },
     {
         name: 'Facebook',
-        imageUrl: '',
-        description: ''
     }
 ]
 
