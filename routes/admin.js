@@ -19,7 +19,7 @@ router.get('/',
   auth.checkLoggedIn('You must be login', '/login'),
   auth.checkCredentials('ADMIN'),
   (req, res, next) => {
-    res.render('admin/index', { user: req.user });
+    res.redirect('/admin/users');
 });
 
 
