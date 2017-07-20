@@ -7,7 +7,7 @@ const postHelper = require('../helpers/post');
 
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', (req, res, next) => {
   Tool.find((err, tools) => {
     Post.find((err, posts) => {
     res.render('home', { user: JSON.stringify(req.user), tools, posts });
@@ -16,7 +16,9 @@ router.get('/', function (req, res, next) {
 });
 
 /* non logged in user posts list */
-router.get('/posts/tool/:tool_id', postHelper.showPosts); 
+router.get('/posts/tool/:tool_id', (req, res, next) => { 
+  postHelper.showPosts(false, req, res, next);
+}); 
 
 // router.post('/posts', (req, res, next) => {
 

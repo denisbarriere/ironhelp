@@ -106,7 +106,7 @@ router.post('/user/:user_id/delete',
 router.get('/posts',
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
-  postHelper.showAllPosts
+  (req, res, next) => { postHelper.showPosts(false, req, res, next); }
 );
 
 
@@ -116,7 +116,7 @@ router.get('/posts',
 router.get('/post/new', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),
-  postHelper.showNewPostForm
+  (req, res, next) => { postHelper.showNewPostForm(false, req, res, next); }
 );
 
 // On new user form submit

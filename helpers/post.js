@@ -4,18 +4,11 @@ const Tool = require('../models/tool');
 
 module.exports = {
 
-  showPosts: (req, res, next) => {
-    res.render('posts');
-  },
-
-  showAllPosts: (req, res, next) => {
-    res.render('posts');    
-  },
-  showAllPostsByUserId: (req, res, next) => {
-    res.render('posts');
+  showPosts: (onProfile, req, res, next) => {
+    res.render('posts', {onProfile});
   },
   
-  showNewPostForm: (req, res, next) => {
+  showNewPostForm: (onProfile, req, res, next) => {
       
     // Retrieve the whole list of tools from the db
     Tool.find({}, (err, tools) => {
@@ -42,7 +35,7 @@ module.exports = {
         } 
       
         // Render the new post form
-        res.render('post/new', {tools, categories, selectedTool});
+        res.render('post/new', {tools, categories, selectedTool, onProfile});
       });
     });
 

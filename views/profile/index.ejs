@@ -12,6 +12,7 @@
     <h1 class="title">
       Your Posts
     </h1>
-    <p><a href='/profile/posts/<%= user._id %>'>My Posts</a></p>
+    <%- include('../posts', { user, onProfile: true } ) %>
+    
   </div>
 </section>

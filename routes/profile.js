@@ -26,7 +26,7 @@ router.get('/',
 **/
 router.get('/posts/:user_id', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
-  postHelper.showAllPostsByUserId
+  (req, res, next) => { postHelper.showPosts(true, req, res, next); }
 );
 
 /**
@@ -34,7 +34,7 @@ router.get('/posts/:user_id',
 **/
 router.get('/post/new', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
-  postHelper.showNewPostForm
+  (req, res, next) => { postHelper.showNewPostForm(true, req, res, next) }
 );
 
 // On new user form submit
