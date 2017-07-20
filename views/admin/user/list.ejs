@@ -14,10 +14,14 @@
   <% })%>
 </ul> -->
 
-<a href='/admin/user/new'>Add a new user</a>
+<section class="section">
+  <div class="container">
+    <a href='/admin/user/new'>Add a new user</a>
 
-<% users.forEach( user => { %>
+    <% users.forEach( user => { %>
 
-  <%- include('../../user/show', { user, onProfile: false }) %>
+      <%- include('../../user/show', { user, onProfile: false }) %>
 
-<% }); %>
+    <% }); %>
+  </div>
+</section>
