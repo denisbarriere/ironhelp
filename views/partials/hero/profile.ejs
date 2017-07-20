@@ -24,7 +24,7 @@
   <div class="hero-foot">
     <div class="container">
       <nav class="tabs is-boxed">
-        <ul id="tab-list">
+        <ul id="tab-list-footer">
           <li :class="getTabClasses('profile')">
             <a href="/profile">Profile</a>
           </li>
@@ -40,19 +40,20 @@
 
 <script>
     new Vue({
-        el: '#tab-list',
+        el: '#tab-list-footer',
         data: {},
         methods: {
 
             getTabClasses: function (type) {
 
-                let tabClasses = [];
+                let lastSegment = location.href.split('/').pop();
 
-                if (location.href.indexOf(`/${type}`) > -1) {
-                    tabClasses = ['is-active'];
+                if (lastSegment === type) {
+                  return ['is-active'];
+                } else {
+                  return [];
                 }
-
-                return tabClasses;
+                
             }
         },
 
