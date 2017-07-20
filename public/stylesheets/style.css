@@ -128,10 +128,9 @@ a {
 .post {
 	border: 2px solid rgb(3,203,162);
 	padding: 20px;
-	margin: 10px;
+	margin: 15px 0;
 }
 
-/* POSTS */
 .post .expand {
 	background-color: rgb(3,203,162);
 	height: 50px;
