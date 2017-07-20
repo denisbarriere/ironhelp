@@ -93,11 +93,6 @@ a {
 }
 
 /* HOME PAGE */
-.tools {
-	height: 500px;
-	overflow-y: auto;
-}
-
 .tool:link {
 	text-decoration: none;
 }

@@ -17,11 +17,6 @@ span.home__subtitle--green {
 }
 
 /**
- * POSTS
-**/
-.position-right { float: right; }
-
-/**
  * LOGIN / SIGN UP
 **/
 /* Overridde Bulmas' default style .columns:last-child { margin-bottom: 0; }  */
