@@ -43,7 +43,14 @@
         <div class="container">
              <h1 v-if="isProfile" class="title">
                 Your Posts
+              <a @click="addPost()" class="button is-outlined is-pulled-right">
+                <span class="icon is-small">
+                    <i class="fa fa-plus"></i>
+                </span>
+                <span>Add Post</span>
+            </a>
             </h1>
+
             <div id="posts-tools">
 
                 <!-- <button @click="refresh('Gotcha')" class="button is-primary">Gotcha</button>
@@ -53,13 +60,6 @@
                 <a @click="refresh('Gotcha')"><span class="tag is-danger is-medium">Gotcha</span></a>
                 <a @click="refresh('Awesome')"><span class="tag is-success is-medium">Awesome</span></a>
                 <a @click="refresh('Doc')"><span class="tag is-warning is-medium">Doc</span></a>
-
-                <a @click="addPost()" class="button is-outlined is-pulled-right">
-                    <span class="icon is-small">
-                        <i class="fa fa-plus"></i>
-                    </span>
-                    <span>Add Post</span>
-                </a>
 
                 <ul>
                     <li v-for="post in viewPosts">
