@@ -1,14 +1,13 @@
-
 <section class="hero is-primary">
   <div class="hero-body">
     <div class="container">
       <div class="columns is-vcentered">
         <div class="column">
           <p class="title">
-            Your Profile
+            <%=post.tool.name%>
           </p>
           <p class="subtitle">
-            This is your space. Here, you can <strong>edit your profile</strong> and also manage your posts!
+            Working together as a community to build the best reference material for developer tools on the internet.
             <br>
             <strong>Choose a tool that's f-ing with you</strong>
           </p>
@@ -22,16 +21,4 @@
     </div>
   </div>
   
-</section>
-
-<section class="section">
-  <div class="container">
-    <h1>Hi <% if (user.username) { %> <%= user.username %> <% } else { %> <%= user.email %> <% } %></h1>
-    <br>
-
-    <%- include('../user/show', {user} ) %>
-
-    <br>
-    <p><a href='/profile/posts/<%= user._id %>'>My Posts</a></p>
-  </div>
 </section>

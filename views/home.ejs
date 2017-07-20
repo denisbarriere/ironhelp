@@ -1,28 +1,31 @@
-<h1 class="title is-1">Choose a tool that's f-ing with you</h1>
+<section class="section">
+  <div class="container">
 
-<hr>
+    <h1 class="title is-1">Choose a tool that's f-ing with you</h1>
 
-<div class="tools">
-<% let rowCount = Math.floor(tools.length / 4); %>
-<% if (tools.length % 4 > 0) { %>
-  <% rowCount += 1; %>
-<% } %>
-<% let toolIndex = 0; %>
-<% let tool %>
- <% for (let row = 0; row < rowCount; row++) { %>
-<div class="columns">
+    <hr>
 
-    <% for (let col = 0; col < 4; col++) { %>
-    <% tool = tools[toolIndex++]; %>
-    <% if (tool) { %>
-    <div class="column is-one-quarter">
-      <%- include('./partials/tool', {tool, posts}) %>
+    <div class="tools">
+    <% let rowCount = Math.floor(tools.length / 4); %>
+    <% if (tools.length % 4 > 0) { %>
+      <% rowCount += 1; %>
+    <% } %>
+    <% let toolIndex = 0; %>
+    <% let tool %>
+    <% for (let row = 0; row < rowCount; row++) { %>
+      
+      <div class="columns">
+
+        <% for (let col = 0; col < 4; col++) { %>
+        <% tool = tools[toolIndex++]; %>
+        <% if (tool) { %>
+          <div class="column is-one-quarter">
+          <%- include('./partials/tool', {tool, posts}) %>
+          </div>
+        <% } %>
+        <% } %>
+      </div>
+    <% } %>
     </div>
-    <% } %>
-    <% } %>
-
-
-</div>
-
-<% } %>
-</div>
+  </div>
+</section>
