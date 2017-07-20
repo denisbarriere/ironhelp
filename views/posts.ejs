@@ -1,176 +1,217 @@
-<section class="hero is-primary">
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-vcentered">
-                <div class="column">
-                    <p class="title">
-                        {{ posts[0].tool.name }}
-                    </p>
-                    <p class="subtitle">
-                        Working together as a community to build the best reference material for developer tools on the internet.
-                        <br>
-                        <strong>Choose a tool that's f-ing with you</strong>
-                    </p>
-                </div>
-                <div class="column is-narrow">
-                    <div id="carbon" class="box">
-                        HELLO
+<div id="posts" class="is-hidden">
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <h1 class="title is-1">
+                            {{ title }}
+                        </h1>
+                        <p class="subtitle">
+                            Working together as a community to build the best reference material for developer tools on the internet.
+                            <br>
+                            <strong>Choose a tool that's f-ing with you</strong>
+                        </p>
+                    </div>
+                    <div v-if="toolImageUrl" class="column is-narrow carbon">
+                        <figure class="media-left">
+                            <p class="image is-128x128">
+                                <img :src="toolImageUrl">
+                            </p>
+                        </figure>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="section">
-    <div class="container">
-        <div id="posts" class="is-hidden">
-            <h1>Posts</h1>
+    <section class="section">
+        <div class="container">
+            <div id="posts-tools">
+                
+                <button @click="refresh('Gotcha')" class="button is-primary">Gotcha</button>
+                <button @click="refresh('Awesome')" class="button is-primary">Awesome</button>
+                <button @click="refresh('Doc')" class="button is-primary">Doc</button>
+                <button @click="addPost()" class="button is-primary">Add Post</button>
 
+                <ul>
+                    <li v-for="post in viewPosts">
+                        <div class="card post is-paddingless">
 
-            <button @click="refresh('Gotcha')" class="button">gotcha</button>
-            <button @click="refresh('Awesome')" class="button">awesome</button>
-            <button @click="refresh('Doc')" class="button">doc</button>
-            <button @click="addPost()" class="button">Add</button>
-
-            <ul>
-                <li v-for="post in viewPosts">
-                    <div class="card post is-paddingless">
-
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-left">
-                                    <figure class="image is-48x48">
-                                        <img :src="post.user ? post.user.imageUrl : ''" alt="Image">
-                                    </figure>
-                                </div>
-                                <div class="media-content">
-                                    <p class="title is-4">{{ post.summary }}</p>
-                                    <p class="subtitle is-6">{{ post.user ? post.user.username : '' }}</p>
-                                    <p>{{ post.category.name }}</p>
-                                    <p>{{ post.tool.name }}</p>
-                                </div>
-                                <div v-if="user && user.role === 'ADMIN'" class="admin-controls">
-                                    <div class="media-right">
-                                        <span class="icon is-medium">
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-48x48">
+                                            <img :src="post.user ? post.user.imageUrl : ''" alt="Image">
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        <p class="title is-4">{{ post.summary }}</p>
+                                        <p class="subtitle is-6">{{ post.user ? post.user.username : '' }}</p>
+                                        <p>{{ post.category.name }}</p>
+                                        <p>{{ post.tool.name }}</p>
+                                    </div>
+                                    <div v-if="user && user.role === 'ADMIN'" class="admin-controls">
+                                        <div class="media-right">
+                                            <span class="icon is-medium">
                     <i class="fa fa-pencil-square"></i>
                 </span>
-                                    </div>
-                                    <div class="media-right">
-                                        <span class="icon is-medium">
+                                        </div>
+                                        <div class="media-right">
+                                            <span class="icon is-medium">
                     <i class="fa fa-times-circle"></i>
                 </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Card content / description -->
-                        <div class="card-content is-paddingless">
-                            <div class="content description">
-                                <div v-if="!isExpanded(post._id)" class="expand" @click.stop="expand(post._id)">
-                                    <span class="icon is-large">
+                            <!-- Card content / description -->
+                            <div class="card-content is-paddingless">
+                                <div class="content description">
+                                    <div v-if="!isExpanded(post._id)" class="expand" @click.stop="expand(post._id)">
+                                        <span class="icon is-large">
                     <i class="fa fa-angle-down"></i>
                 </span>
-                                </div>
-                                <!-- <transition name="slide"> -->
-                                <div v-else class="media-content">
-                                    <div class="content section">
-                                        {{ post.content }}
                                     </div>
-                                    <div class="expand" @click.stop="shrink(post._id)">
-                                        <span class="icon is-large">
+                                    <!-- <transition name="slide"> -->
+                                    <div v-else class="media-content">
+                                        <div class="content section">
+                                            {{ post.content }}
+                                        </div>
+                                        <div class="expand" @click.stop="shrink(post._id)">
+                                            <span class="icon is-large">
                     <i class="fa fa-angle-up"></i>
                 </span>
+                                        </div>
                                     </div>
+                                    <!-- </transition> -->
+
                                 </div>
-                                <!-- </transition> -->
-
                             </div>
+
+
+
                         </div>
-
-
-
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    </div>
+</div>
+</div>
 
-    <script>
-        new Vue({
-            el: '#posts',
-            data: {
-                message: 'foo',
-                posts: [],
-                viewPosts: [],
-                user: undefined,
-                expandedPosts: {},
-                isAdmin: false,
+<script>
+    new Vue({
+        el: '#posts',
+        data: {
+            message: 'foo',
+            posts: [],
+            viewPosts: [],
+            user: undefined,
+            expandedPosts: {},
+            isAdmin: false,
+            toolID: undefined
+        },
+        methods: {
+
+            addPost: function () {
+
+                let url = '/profile/post/new';
+
+                if (this.user && this.user.role === 'ADMIN') {
+                    url = '/admin/post/new';
+                }
+
+                location = url;
             },
-            methods: {
 
-                addPost: function () {
+            expand: function (id) {
+                this.expandedPosts[id] = true;
+                this.expandedPosts = Object.assign({}, this.expandedPosts);
+            },
 
-                    let url = '/profile/post/new';
+            shrink: function (id) {
+                this.expandedPosts[id] = false;
+                this.expandedPosts = Object.assign({}, this.expandedPosts);
+            },
 
-                    if (this.user && this.user.role === 'ADMIN') {
-                        url = '/admin/post/new';
+            isExpanded: function (id) {
+                return this.expandedPosts[id];
+            },
+
+            refresh: function (category) {
+
+                this.viewPosts = this.posts.filter(post => {
+
+                    return !category || post.category && post.category.name == category;
+
+                });
+            }
+        },
+
+        computed: {
+
+            title: function () {
+
+                let title;
+
+                if (this.posts.length === 0) {
+
+                    title = 'No posts :(';
+
+                } else if (this.toolID) {
+
+                    title = this.posts[0].tool.name;
+
+                } else if (this.user) {
+                    if (this.user.role === 'ADMIN') {
+                        title = 'Fancy Admin!';
+                    } else {
+                        title = 'Humble user';
                     }
+                } else {
 
-                    location = url;
-                },
-
-                expand: function (id) {
-                    this.expandedPosts[id] = true;
-                    this.expandedPosts = Object.assign({}, this.expandedPosts);
-                },
-
-                shrink: function (id) {
-                    this.expandedPosts[id] = false;
-                    this.expandedPosts = Object.assign({}, this.expandedPosts);
-                },
-
-                isExpanded: function (id) {
-                    return this.expandedPosts[id];
-                },
-
-                refresh: function (category) {
-
-                    this.viewPosts = this.posts.filter(post => {
-
-                        return !category || post.category && post.category.name == category;
-
-                    });
+                    title = 'Puny guest'
                 }
+
+                return title;
             },
 
-            created: function () {
+            toolImageUrl: function() {
 
-                let url = '/api/posts';
+                let url = undefined;
 
-                let toolID;
-
-                if (location.href.indexOf('/tool/') > -1) {
-                    toolID = location.href.split('/').pop();
+                if (this.toolID && this.posts.length > 0) {
+                    url = this.posts[0].tool.imageUrl;
                 }
 
-                if (toolID) {
-                    url += '/tool/' + toolID;
-                } else if (location.href.indexOf('/profile/') > -1) {
-                    url += '/user'; 
-                }
-                axios
-                    .get(url)
-                    .then(response => {
-                        this.posts = response.data.posts;
-                        this.user = response.data.loggedIn;
-                        this.refresh();
-                        this.$el.classList.toggle('is-hidden');
-                    })
+                return url;
+            }
+        },
+
+        created: function () {
+
+            let url = '/api/posts';
+
+            if (location.href.indexOf('/tool/') > -1) {
+                this.toolID = location.href.split('/').pop();
             }
 
-        })
+            if (this.toolID) {
+                url += '/tool/' + this.toolID;
+            } else if (location.href.indexOf('/profile/') > -1) {
+                url += '/user';
+            }
+            axios
+                .get(url)
+                .then(response => {
+                    this.posts = response.data.posts;
+                    this.user = response.data.loggedIn;
+                    this.refresh();
+                    this.$el.classList.remove('is-hidden');
+                })
+        }
 
-    </script>
+    })
+
+</script>
