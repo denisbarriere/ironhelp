@@ -127,14 +127,15 @@ router.get('/posts/category/:category_id', (req, res, next) => {
 });
 
 router.get('/posts/tool/:tool_id', (req, res, next) => {
-  Post.find({tool:req.params.tool_id})
-    .populate('user')
-    .populate('tool')
-    .populate('category')
-    .exec((err, posts) => {
-      if (err) return next(err);
-      res.render('posts', { posts, user: req.user });
-    });
+  // Post.find({tool:req.params.tool_id})
+  //   .populate('user')
+  //   .populate('tool')
+  //   .populate('category')
+  //   .exec((err, posts) => {
+  //     if (err) return next(err);
+  //     res.render('posts', { posts, user: req.user });
+  //   });
+  res.render('posts');
 });
 
 router.get('/posts/category/:category_id/tool/:tool_id', (req, res, next) => {
@@ -165,6 +166,11 @@ router.post('/posts', (req, res, next) => {
     console.log('got there')
     res.redirect('/home');
   });
+});
+
+
+router.get('/posts/new', (req, res, next) => {
+  res.render('admin/user/new');
 });
 
 module.exports = router;

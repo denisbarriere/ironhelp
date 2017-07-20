@@ -1,11 +1,38 @@
-<div id="posts">
+ <section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column">
+          <p class="title">
+            {{ posts[0].tool.name }}
+          </p>
+          <p class="subtitle">
+            Working together as a community to build the best reference material for developer tools on the internet.
+            <br>
+            <strong>Choose a tool that's f-ing with you</strong>
+          </p>
+        </div>
+         <div class="column is-narrow">
+          <div id="carbon" class="box">
+            HELLO
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+</section> 
+
+<section class="section">
+  <div class="container">
+<div id="posts" class="is-hidden">
     <h1>Posts</h1>
 
     <button @click="refresh('Gotcha')" class="button">gotcha</button>
     <button @click="refresh('Awesome')" class="button">awesome</button>
     <button @click="refresh('Doc')" class="button">doc</button>
+    <button @click="addPost()" class="button">Add</button>
 
-    <ul v-if="loaded">
+    <ul>
         <li v-for="post in viewPosts">
             <div class="card post is-paddingless">
 
@@ -45,6 +72,7 @@
                     <i class="fa fa-angle-down"></i>
                 </span>
                         </div>
+                        <!-- <transition name="slide"> -->
                         <div v-else class="media-content">
                             <div class="content section">
                                 {{ post.content }}
@@ -55,6 +83,8 @@
                 </span>
                             </div>
                         </div>
+                        <!-- </transition> -->
+
                     </div>
                 </div>
 
@@ -63,6 +93,8 @@
             </div>
         </li>
     </ul>
+</div>
+  </div>
 </div>
 
 <script>
@@ -75,35 +107,46 @@
             user: undefined,
             expandedPosts: {},
             isAdmin: false,
-            loaded: false
         },
         methods: {
 
-            expand: function(id) {
+            addPost: function () {
+                location = '/admin/post/new';
+            },
+
+            expand: function (id) {
                 console.log('expand');
                 this.expandedPosts[id] = true;
                 this.expandedPosts = Object.assign({}, this.expandedPosts);
             },
 
-            shrink: function(id) {
+            shrink: function (id) {
                 console.log('shrink');
                 this.expandedPosts[id] = false;
                 this.expandedPosts = Object.assign({}, this.expandedPosts);
             },
 
-            isExpanded: function(id) {
+            isExpanded: function (id) {
                 return this.expandedPosts[id];
             },
 
             refresh: function (category) {
 
-                const toolID = location.href.split('/').pop();
+                let toolID;
+
+                if (location.href.indexOf('/tool/') > -1) {
+                    toolID = location.href.split('/').pop();
+                }
 
                 this.viewPosts = this.posts.filter(post => {
 
                     const rightCategory = !category || post.category && post.category.name == category;
 
-                    const rightTool = String(post.tool._id) == String(toolID);
+                    let rightTool = true;
+
+                    if (toolID) {
+                        rightTool = String(post.tool._id) == String(toolID);
+                    }
 
                     return rightCategory && rightTool;
 
@@ -121,7 +164,7 @@
                     this.posts = response.data.posts;
                     this.user = response.data.loggedIn;
                     this.refresh();
-                    this.loaded = true;
+                    this.$el.classList.toggle('is-hidden');
                 })
         }
 

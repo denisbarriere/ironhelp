@@ -5,14 +5,16 @@ const Tool = require('../models/tool');
 module.exports = {
   showAllPosts: (req, res, next) => {
 
-    Post.find({})
-    .populate('user')
-    .populate('tool')
-    .populate('category')
-    .exec((err, posts) => {
-      if (err) return next(err);
-      res.render('posts', { posts, user: req.user });
-    });
+    // Post.find({})
+    // .populate('user')
+    // .populate('tool')
+    // .populate('category')
+    // .exec((err, posts) => {
+    //   if (err) return next(err);
+    //   res.render('posts', { posts, user: req.user });
+    // });
+
+    res.render('posts');
     
   },
   showAllPostsByUserId: (req, res, next) => {
