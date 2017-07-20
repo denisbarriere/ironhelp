@@ -116,10 +116,10 @@ a {
 
 
 /* USERS */
-.media + .media { border-top: 1px solid rgb(3,203,162); }
+.media + .media { border-top: 1px solid #dbdbdb; }
 
 .user-list {
-	border: 1px solid rgb(3,203,162);
+	border: 1px solid #dbdbdb;
 	padding: 20px;
 	margin: 10px; 
 }
