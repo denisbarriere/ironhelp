@@ -49,4 +49,18 @@ router.get('/posts/:user_id',
   postHelper.showAllPostsByUserId
 );
 
+/**
+ * ADD NEW POST
+**/
+router.get('/post/new', 
+  auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
+  postHelper.showNewPostForm
+);
+
+// On new user form submit
+router.post('/posts',
+  auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
+  postHelper.newPost
+);
+
 module.exports = router;

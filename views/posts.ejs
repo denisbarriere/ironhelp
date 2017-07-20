@@ -112,7 +112,14 @@
             methods: {
 
                 addPost: function () {
-                    location = '/admin/post/new';
+
+                    let url = '/profile/post/new';
+
+                    if (this.user && this.user.role === 'ADMIN') {
+                        url = '/admin/post/new';
+                    }
+
+                    location = url;
                 },
 
                 expand: function (id) {
