@@ -19,7 +19,7 @@ router.get('/',
   auth.checkLoggedIn('You must be login', '/login'),
   auth.checkCredentials('ADMIN'),
   (req, res, next) => {
-    res.render('admin/index', { user: req.user });
+    res.redirect('/admin/users');
 });
 
 
@@ -74,7 +74,7 @@ router.get('/user/:user_id',
 router.get('/user/:user_id/edit', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   auth.checkCredentials('ADMIN'),  
-  userHelper.showEditUserPage
+  (req, res, next) => { userHelper.showEditUserPage(false, req, res, next) }
 );
 
 // On edit user form submit

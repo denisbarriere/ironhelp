@@ -49,8 +49,11 @@
           <% } %>
           <% if( isUserAdmin && !onProfile && user._id != currentUser.user._id) { %>
           <% console.log("User id: "+ user._id+ " Email: " + user.email);%>
-          <form class='admin-list__delete' action='/admin/user/<%= user._id %>/delete' method='POST'>
-            <button class="button is-danger level-item">Delete</button>
+          <form id="delete-user" class='admin-list__delete' action='/admin/user/<%= user._id %>/delete' method='POST'>
+           <button class="button is-danger is-outlined level-item"><span>Delete</span>
+              <span class="icon is-small">
+                <i class="fa fa-times"></i>
+              </span></button> 
           </form>
           <% } %>
       </div>

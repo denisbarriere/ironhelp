@@ -69,7 +69,7 @@ router.post('/login',
     passReqToCallback: true
   }), (req, res) => {
     if (req.user.role === 'ADMIN') {
-      res.redirect('/admin');
+      res.redirect('/admin/users');
     } else {
       res.redirect('/');
     }

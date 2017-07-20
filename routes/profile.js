@@ -53,7 +53,8 @@ router.post('/posts',
 **/
 router.get('/:user_id/edit', 
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
-  userHelper.showEditUserPage
+  (req, res, next) => { userHelper.showEditUserPage(true, req, res, next) }
+
 );
 
 // On edit user form submit
