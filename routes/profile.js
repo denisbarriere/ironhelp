@@ -16,24 +16,7 @@ router.get('/',
 );
 
 
-/******************************
- *                            * 
- *  USERS                     *
- *                            *
- * ****************************/
-/**
- * EDIT USER DATA
-**/
-router.get('/:user_id/edit', 
-  auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
-  userHelper.showEditUserPage
-);
 
-// On edit user form submit
-router.post('/:user_id', 
-  auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
-  userHelper.editUser
-);
 
 
 /******************************
@@ -61,6 +44,25 @@ router.get('/post/new',
 router.post('/posts',
   auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
   postHelper.newPost
+);
+
+/******************************
+ *                            * 
+ *  USERS                     *
+ *                            *
+ * ****************************/
+/**
+ * EDIT USER DATA
+**/
+router.get('/:user_id/edit', 
+  auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
+  userHelper.showEditUserPage
+);
+
+// On edit user form submit
+router.post('/:user_id', 
+  auth.checkLoggedIn('Access Denied. You must login to access this content', '/login'), 
+  userHelper.editUser
 );
 
 module.exports = router;

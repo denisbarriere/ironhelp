@@ -15,31 +15,27 @@ router.get('/', function (req, res, next) {
   })
 });
 
+/* non logged in user posts list */
 router.get('/posts/tool/:tool_id', postHelper.showPosts); 
 
-router.post('/posts', (req, res, next) => {
+// router.post('/posts', (req, res, next) => {
 
-  const obj = {
-    title: req.body.title,
-    user: req.user._id,
-    category: req.body.category,
-    tool: req.body.tool,
-    summary: req.body.summary,
-    content: req.body.content
+//   const obj = {
+//     title: req.body.title,
+//     user: req.user._id,
+//     category: req.body.category,
+//     tool: req.body.tool,
+//     summary: req.body.summary,
+//     content: req.body.content
 
-  };
+//   };
 
-  Post.create(obj, (err, data) => {
-    if (err) return next(err);
-    console.log('got there')
-    res.redirect('/home');
-  });
-});
-
-
-router.get('/posts/new', (req, res, next) => {
-  res.render('admin/user/new');
-});
+//   Post.create(obj, (err, data) => {
+//     if (err) return next(err);
+//     console.log('got there')
+//     res.redirect('/home');
+//   });
+// });
 
 
 module.exports = router;

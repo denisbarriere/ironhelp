@@ -7,7 +7,7 @@ module.exports = {
   showPosts: (req, res, next) => {
     res.render('posts');
   },
-  
+
   showAllPosts: (req, res, next) => {
     res.render('posts');    
   },
@@ -48,7 +48,7 @@ module.exports = {
 
   },
   newPost: (req, res, next) => {
-    
+
     // Retrieve post info
     const postInfo = {
       user: req.user._id,
@@ -61,7 +61,7 @@ module.exports = {
   
     // Create the new post in the db
     const newPost = new Post(postInfo);
-    newPost.save( (err) => {
+    newPost.save( (err, post) => {
       if (err) {
         console.log(err);
         next(err);
@@ -71,7 +71,8 @@ module.exports = {
         if (req.user.role === 'ADMIN') {
           res.redirect('/admin/posts');
         } else {
-          res.redirect('/posts')
+          // TODO: how about from 'my posts' ???
+          res.redirect('/posts/tool/' + post.tool);
         }
       }
     });
