@@ -12,7 +12,7 @@ const mongoose       = require("mongoose");
 
 const index          = require('./routes/index');
 const authController = require('./routes/authController');
-const usersAPI       = require('./routes/api/users');
+const apiRouter       = require('./routes/api/apiRouter');
 const admin          = require('./routes/admin');
 const profile        = require('./routes/profile');
 
@@ -57,7 +57,7 @@ app.use(auth.setCurrentUser);
 app.use('/', authController);
 app.use('/admin', admin);
 app.use('/profile', profile);
-app.use('/api/users', usersAPI);
+app.use('/api', apiRouter);
 app.use('/', index);
 
 
