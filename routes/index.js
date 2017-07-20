@@ -8,15 +8,6 @@ const User = require('../models/user');
 
 
 /* GET home page. */
-// router.get('/', function (req, res, next) {
-//   res.render('index');
-// });
-
-router.get('/secret', auth.checkLoggedIn('You must be login', '/login'), function (req, res, next) {
-  res.render('secret', { user: JSON.stringify(req.user) });
-});
-
-
 router.get('/', function (req, res, next) {
   Tool.find((err, tools) => {
     Post.find((err, posts) => {
@@ -24,6 +15,21 @@ router.get('/', function (req, res, next) {
   })
   })
 });
+
+
+/* GET Posts page, listing tools: Links from the homepage */
+router.get('/posts/tool/:tool_id', (req, res, next) => {
+  Post.find({tool:req.params.tool_id})
+    .populate('user')
+    .populate('tool')
+    .populate('category')
+    .exec((err, posts) => {
+      if (err) return next(err);
+      res.render('posts', { posts, user: req.user });
+    });
+});
+
+
 
 // TODO: refactor to combine with similar tool and docs
 router.get('/gotcha/:tool_id', (req, res, next) => {
@@ -93,17 +99,6 @@ router.get('/post/:id',
 });
 
 
-router.get('/admin/posts/', (req, res, next) => {
-  Post.find({})
-    .populate('user')
-    .populate('tool')
-    .populate('category')
-    .exec((err, posts) => {
-      if (err) return next(err);
-      res.render('posts', { posts });
-    });
-});
-
 router.get('/profile/posts/:user_id', (req, res, next) => {
   Post.find({user:req.params.user_id})
     .populate('user')
@@ -126,27 +121,15 @@ router.get('/posts/category/:category_id', (req, res, next) => {
     });
 });
 
-router.get('/posts/tool/:tool_id', (req, res, next) => {
-  // Post.find({tool:req.params.tool_id})
+router.get('/posts/category/:category_id/tool/:tool_id', (req, res, next) => {
+  // Post.find({tool:req.params.tool_id, category: req.params.category_id})
   //   .populate('user')
   //   .populate('tool')
   //   .populate('category')
   //   .exec((err, posts) => {
   //     if (err) return next(err);
-  //     res.render('posts', { posts, user: req.user });
-  //   });
-  res.render('posts');
-});
-
-router.get('/posts/category/:category_id/tool/:tool_id', (req, res, next) => {
-  Post.find({tool:req.params.tool_id, category: req.params.category_id})
-    .populate('user')
-    .populate('tool')
-    .populate('category')
-    .exec((err, posts) => {
-      if (err) return next(err);
       res.render('posts', { posts, user: req.user });
-    });
+  //   });
 });
 
 router.post('/posts', (req, res, next) => {
