@@ -68,7 +68,7 @@ module.exports = {
     });
 
   },
-  showEditUserPage: (req, res, next) => {
+  showEditUserPage: (onProfile, req, res, next) => {
 
     // Retrieve user ID from URL
     const userID = req.params.user_id;
@@ -80,10 +80,10 @@ module.exports = {
       }
 
       // Display the edit user view, based on user
-      if(req.user.role === 'ADMIN') {
-        res.render('user/edit', { user, onProfile: false });
-      } else {
+      if(onProfile) {
         res.render('user/edit', { user, onProfile: true });
+      } else {
+        res.render('user/edit', { user, onProfile: false });
       }
     });
 
