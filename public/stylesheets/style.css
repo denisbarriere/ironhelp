@@ -126,11 +126,35 @@ a {
 	margin: 15px 0;
 }
 
-.post .expand {
+.post .expander {
 	background-color: rgb(3,203,162);
 	height: 50px;
 	color: white;
 	text-align: center;
+}
+
+.post .expander.gotcha, span.gotcha {
+	background-color: #ff3860;
+}
+
+.post .expander.awesome, span.awesome {
+	background-color: #23d160;
+}
+
+.post .expander.doc, span.doc {
+	background-color: #ffdd57;
+}
+
+.post.gotcha {
+	border-color: #ff3860;
+}
+
+.post.awesome {
+	border-color: #23d160;
+}
+
+.post.doc {
+	border-color: #ffdd57;
 }
 
 .post .section {
@@ -145,6 +169,8 @@ a {
 .post .description .icon {
 	color: white;
 }
+
+
 
 /* durations and timing functions.              */
 

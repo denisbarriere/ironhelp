@@ -4,7 +4,6 @@
     
         <%- include('./partials/hero/admin') %>
 
-
     </section>
 
     <section v-else-if="isProfile" class="hero is-primary">
@@ -53,17 +52,13 @@
 
             <div id="posts-tools">
 
-                <!-- <button @click="refresh('Gotcha')" class="button is-primary">Gotcha</button>
-                <button @click="refresh('Awesome')" class="button is-primary">Awesome</button>
-                <button @click="refresh('Doc')" class="button is-primary">Doc</button>
-                <button @click="addPost()" class="button is-primary">Add Post</button> -->
-                <a @click="refresh('Gotcha')"><span class="tag is-danger is-medium">Gotcha</span></a>
-                <a @click="refresh('Awesome')"><span class="tag is-success is-medium">Awesome</span></a>
-                <a @click="refresh('Doc')"><span class="tag is-warning is-medium">Doc</span></a>
+                <a @click="refresh('Gotcha')"><span class="tag is-medium" :class="getSelectedStyles('Gotcha')">Gotcha</span></a>
+                <a @click="refresh('Awesome')"><span class="tag is-medium" :class="getSelectedStyles('Awesome')">Awesome</span></a>
+                <a @click="refresh('Doc')"><span class="tag is-medium" :class="getSelectedStyles('Doc')">Doc</span></a>
 
                 <ul>
                     <li v-for="post in viewPosts">
-                        <div class="card post is-paddingless">
+                        <div class="card post is-paddingless" :class="getPostStyles(post)">
 
                             <div class="card-content">
                                 <div class="media">
@@ -96,7 +91,7 @@
                             <!-- Card content / description -->
                             <div class="card-content is-paddingless">
                                 <div class="content description">
-                                    <div v-if="!isExpanded(post._id)" class="expand" @click.stop="expand(post._id)">
+                                    <div v-if="!isExpanded(post._id)" class="expander" :class="getPostStyles(post)" @click.stop="expand(post._id)">
                                         <span class="icon is-large">
                     <i class="fa fa-angle-down"></i>
                 </span>
@@ -106,7 +101,7 @@
                                         <div class="content section">
                                             {{ post.content }}
                                         </div>
-                                        <div class="expand" @click.stop="shrink(post._id)">
+                                        <div class="expander" :class="getPostStyles(post)" @click.stop="shrink(post._id)">
                                             <span class="icon is-large">
                     <i class="fa fa-angle-up"></i>
                 </span>
@@ -136,7 +131,8 @@
             viewPosts: [],
             user: undefined,
             expandedPosts: {},
-            toolID: undefined
+            toolID: undefined,
+            inactiveCategories: [],
         },
         methods: {
 
@@ -167,23 +163,57 @@
 
             refresh: function (category) {
 
+                if (category) {
+
+                    let pos = this.inactiveCategories.indexOf(category);
+
+                    if (pos === -1) {
+                        this.inactiveCategories.push(category);
+                    } else {
+                        this.inactiveCategories.splice(pos, 1);
+                    }
+                }
+                
                 this.viewPosts = this.posts.filter(post => {
 
-                    return !category || post.category && post.category.name == category;
+                    return post.category && this.inactiveCategories.indexOf(post.category.name) === -1;
 
                 });
             },
 
-            getTabClasses: function (type) {
+            getTabClasses: function (category) {
 
                 let tabClasses = [];
 
-                if (location.href.indexOf(`/${type}`) > -1) {
+                if (location.href.indexOf(`/${category}`) > -1) {
                     tabClasses = ['is-active'];
                 }
 
                 return tabClasses;
+            },
+
+            getPostStyles: function(post) {
+
+                return [post.category.name.toLowerCase()];
+            },
+
+            getSelectedStyles: function(category) {
+
+                // let classes = {
+                //     'Gotcha' :  'is-danger',
+                //     'Awesome' : 'is-success',
+                //     'Doc' : 'is-warning'
+                // };
+
+                if (this.inactiveCategories.indexOf(category) > -1) {
+                    return ['is-light'];
+                } else {
+                    return [category.toLowerCase()];
+                }
+                
             }
+
+            
         },
 
         computed: {
