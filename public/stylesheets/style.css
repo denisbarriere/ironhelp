@@ -1,11 +1,6 @@
-/*body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-*/
+/**
+ * LAYOUT
+**/
 .main {
 	padding-top: 50px;
 }
@@ -27,11 +22,67 @@ a {
 	margin: 20px 0;
 }
 
+
+/**
+ * HEADER
+**/
+
+.header-username { color: #00d1b2; }
+
+
+/**
+ * HOMEPAGE
+**/
+.tool:link {
+	text-decoration: none;
+}
+.tool .card {
+	background-color: rgb(3,203,162);
+	color: white;
+}
+
+.tool .title {
+	color: inherit;
+}
+
+.tool .card{ transition: all .2s ease-in-out; }
+.tool .card:hover { transform: scale(1.05); } 
+
+
+/**
+ * HERO BANNER
+**/
+.hero-foot { padding: 0 1.5rem; }
+#carbon > img { margin: 0 auto; }
+
+/* on HOMEPAGE */
+span.home__subtitle--green {
+  color: #00d1b2;
+  font-weight: bold;
+}
+
+
+/**
+ * LOGIN / SIGN UP
+**/
 .login,
 .signup {
 	width: 380px;
 	padding-top: 50px;
 	margin: 0 auto;
+}
+
+/* Overridde Bulmas' default style .columns:last-child { margin-bottom: 0; }  */
+#login,
+#signup { 
+	margin-bottom: 0; 
+}
+
+@media only screen and (max-width: 768px) {
+  #login, #signup {
+    margin-left: .1rem;
+    margin-right: .1rem;
+  }
 }
 
 .carret-right {
@@ -46,80 +97,9 @@ a {
 }
 
 
-/* ADMIN INTERFACE */
-
-/* Navigation */
-.navbar--yellow,
-.navbar--yellow .nav { background-image: linear-gradient(to bottom,#fff 0,#ffdd57 100%); }
-
-/* USER LIST */
-
-.admin-user-list > li,
-.admin-list > li,
-.admin-post-list > li,
-.admin-list > li { 
-	margin: 20px 0;
-}
-.admin-user-list__delete,
-.admin-post-list__delete,
-.admin-list__delete {
-	display: inline-block;
-}
-
-/* NEW USER */
-#admin-user-new > label,
-#admin-new > label,
-#admin-user-edit > label,
-#admin-edit > label,
-#user-edit > label { display: block; }
-
-#admin-user-new > input,
-#admin-new > input,
-#admin-user-edit > input,
-#admin-edit > input,
-#user-edit > input { margin-bottom: 20px; }
-
-#admin-user-new > button,
-#admin-new > button,
-#admin-user-edit > button,
-#admin-edit > button,
-#user-edit > button { display: block; }
-
-
-/* SHOW USER */
-.user-image { 
-	width: 200px;
-	height: 200px;
-}
-
-/* HOME PAGE */
-.tool:link {
-	text-decoration: none;
-}
-.tool .card {
-	background-color: rgb(3,203,162);
-	color: white;
-}
-
-.tool .title {
-	color: inherit;
-}
-
-.tool .card{ transition: all .2s ease-in-out; }
-.tool .card:hover { transform: scale(1.1); } 
-
-
-
-/* USERS */
-.media + .media { border-top: 1px solid #dbdbdb; }
-
-.user-list {
-	border: 1px solid #dbdbdb;
-	padding: 20px;
-	margin: 10px; 
-}
-
-/* POSTS */
+/**
+ * POSTS
+**/
 .post {
 	border: 2px solid rgb(3,203,162);
 	padding: 20px;
@@ -171,10 +151,64 @@ a {
 }
 
 
+/**
+ * ADMIN INTERFACE
+**/
+/* Navigation */
+.navbar--yellow,
+.navbar--yellow .nav { background-image: linear-gradient(to bottom,#fff 0,#ffdd57 100%); }
 
-/* durations and timing functions.              */
+/* USER LIST */
+.admin-user-list > li,
+.admin-list > li,
+.admin-post-list > li,
+.admin-list > li { 
+	margin: 20px 0;
+}
+.admin-user-list__delete,
+.admin-post-list__delete,
+.admin-list__delete {
+	display: inline-block;
+}
+
+.media + .media { border-top: 1px solid #dbdbdb; }
+
+.user-list {
+	border: 1px solid #dbdbdb;
+	padding: 20px;
+	margin: 10px; 
+}
+
+/* NEW USER */
+#admin-user-new > label,
+#admin-new > label,
+#admin-user-edit > label,
+#admin-edit > label,
+#user-edit > label { display: block; }
+
+#admin-user-new > input,
+#admin-new > input,
+#admin-user-edit > input,
+#admin-edit > input,
+#user-edit > input { margin-bottom: 20px; }
+
+#admin-user-new > button,
+#admin-new > button,
+#admin-user-edit > button,
+#admin-edit > button,
+#user-edit > button { display: block; }
 
 
+/* SHOW USER */
+.user-image { 
+	width: 200px;
+	height: 200px;
+}
+
+
+/**
+ * DURATIONS AND TIMING FUNCTIONS
+**/
 .slide-leave-active,
 .slide-enter-active {
   transition: 1s;
