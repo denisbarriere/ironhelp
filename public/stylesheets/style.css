@@ -105,9 +105,9 @@ a {
 	color: inherit;
 }
 
-.tool .card:hover {
-	opacity: .85;
-}
+.tool .card{ transition: all .2s ease-in-out; }
+.tool .card:hover { transform: scale(1.1); } 
+
 
 
 /* USERS */
