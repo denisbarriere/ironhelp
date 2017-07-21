@@ -61,6 +61,15 @@ span.home__subtitle--green {
   font-weight: bold;
 }
 
+.tool-logo > img {
+	max-width: 256px;
+	max-height: 128px;
+}
+
+.tool-logo-admin > img {
+	max-width: 128px;
+	max-height: 128px;
+}
 
 /**
  * LOGIN / SIGN UP
