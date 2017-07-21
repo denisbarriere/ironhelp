@@ -46,7 +46,7 @@
 }
 
 .tool .card{ transition: all .2s ease-in-out; }
-.tool .card:hover { transform: scale(1.05); } 
+.tool .card:hover { transform: scale(1.02); } 
 
 
 /**
