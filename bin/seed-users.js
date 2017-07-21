@@ -3,63 +3,8 @@ const bcrypt   = require('bcrypt');
 require("dotenv").config();
 mongoose.connect(process.env.MONGODB_URI); // db name from local .env
 mongoose.connect(process.env.MONGODB_ADMIN_PWD); // admin password from local .env
-const Tool = require('../models/tool');
 const User = require('../models/user');
 const bcryptSalt = 10;
-
-// tools
-const tools = [
-    {
-        name: 'Express JS',
-        imageUrl: 'http://codecondo.com/wp-content/uploads/2015/07/15-Websites-built-with-Express_785.png?x94435',
-        description: ''
-    },
-    {
-        name: 'Chart.js',
-        imageUrl: 'http://www.chartjs.org/img/chartjs-logo.svg',
-        description: ''
-    },
-    {
-        name: 'Node.js',
-        imageUrl: 'https://nodejs.org/static/images/logo.svg',
-        description: ''
-    },
-    {
-        name: 'Passport JS',
-        imageUrl: 'https://pbs.twimg.com/profile_images/599259952574693376/DMrPoJtc.png',
-        description: ''
-    },
-    {
-        name: 'MongoDB',
-    },
-    {
-        name: 'Mongoose',
-    },
-    {
-        name: 'JQuery',
-    },
-    {
-        name: 'Google Maps',
-    },
-    {
-        name: 'NPM',
-    },
-    {
-        name: 'Facebook',
-    }
-]
-
-Tool.create(tools, (err, docs) => {
-  if (err) {
-    throw err;
-  }
-  console.log('TOOLS:');
-  docs.forEach((tool) => {
-    console.log(tool.name)
-  });
-  mongoose.connection.close();
-});
-
 
 // Admin users
 const salt = bcrypt.genSaltSync(bcryptSalt);
