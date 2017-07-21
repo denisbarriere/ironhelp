@@ -21,11 +21,35 @@
                             {{ title }}
                         </h1>
                         <p class="subtitle">
-                            Working together as a community to build the best reference material for developer tools on the internet.
-                            <br>
-                            <strong>Choose a tool that's f-ing with you</strong>
+                            {{ toolDescription }}
                         </p>
+                        
+                        <span v-if="toolWebsite" class="field">
+                            <a :href="toolWebsite" class="button is-primary is-inverted is-outlined" target="_blank">
+                                <span class="icon">
+                                <i class="fa fa-link fa-1"></i>
+                                </span>
+                                <span>Website</span>
+                            </a>
+                        </span>
+                        <span v-if="toolDocumentationUrl" class="field">
+                            <a :href="toolDocumentationUrl" class="button is-info is-inverted is-outlined" target="_blank">
+                                <span class="icon">
+                                <i class="fa fa-book fa-1"></i>
+                                </span>
+                                <span>Documentation</span>
+                            </a>
+                        </span>
+                        <span v-if="toolGitHubUrl" class="field">
+                            <a :href="toolGitHubUrl" class="button is-success is-inverted is-outlined" target="_blank">
+                                <span class="icon">
+                                <i class="fa fa-github fa-1"></i>
+                                </span>
+                                <span>GitHub</span>
+                            </a>
+                        </span>
                     </div>
+                    
                     <div v-if="toolImageUrl" class="column is-narrow carbon">
                         <figure class="media-left">
                             <p class="image is-128x128">
@@ -279,7 +303,48 @@
                 }
 
                 return url;
-            }
+            },
+
+            toolDescription: function () {
+                let description = undefined;
+
+                if (this.toolID && this.posts.length > 0) {
+                    description = this.posts[0].tool.description;
+                }
+                return description;
+            },
+            toolWebsite: function () {
+                let website = undefined;
+
+                if (this.toolID && this.posts.length > 0) {
+                    website = this.posts[0].tool.website;
+                }
+                return website;
+            },
+            toolDocumentationUrl: function () {
+                let documentationUrl = undefined;
+
+                if (this.toolID && this.posts.length > 0) {
+                    documentationUrl = this.posts[0].tool.documentation;
+                }
+                return documentationUrl;
+            },
+            toolGitHubUrl: function () {
+                let gitHubUrl = undefined;
+
+                if (this.toolID && this.posts.length > 0) {
+                    gitHubUrl = this.posts[0].tool.github;
+                }
+                return gitHubUrl;
+            },
+            toolTechnology: function () {
+                let technology = undefined;
+
+                if (this.toolID && this.posts.length > 0) {
+                    technology = this.posts[0].tool.technology;
+                }
+                return technology;
+            },
         },
 
         created: function () {
