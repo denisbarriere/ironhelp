@@ -2,19 +2,23 @@
 
 <section class="section">
   <div class="container">
-    <h1 class="title">Iron Help Users</h1>
+    <h1 class="title">Iron Help Users
+      <a class="button is-outlined is-pulled-right" href="/admin/user/new">
+        <span class="icon is-small">
+          <i class="fa fa-plus"></i>
+        </span>
+        <span>Add User</span>
+      </a>
+    </h1>
     <h2 class="subtitle">Manage user data</h2>
     
-    <hr>
     <div class="content">
 
-      <a class="button is-link" href='/admin/user/new'>Add a new user</a>
+      <% users.forEach( user => { %>
 
-        <% users.forEach( user => { %>
+        <%- include('../user/show', { user, onProfile: false }) %>
 
-          <%- include('../user/show', { user, onProfile: false }) %>
-
-        <% }); %>
+      <% }); %>
     </div>
   </div>
 </section>
