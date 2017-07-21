@@ -51,7 +51,7 @@
                 </a>
             </h1>
 
-            <h1 v-if="isAdmin" class="title">
+            <h1 v-else-if="isAdmin" class="title">
                 All Posts
                 <a @click="addPost()" class="button is-outlined is-pulled-right">
                     <span class="icon is-small">
@@ -60,6 +60,17 @@
                     <span>Add Post</span>
                 </a>
             </h1>
+
+            <h1 v-else class="title">
+                Posts
+                <a @click="addPost()" class="button is-outlined is-pulled-right">
+                    <span class="icon is-small">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    <span>Add Post</span>
+                </a>
+            </h1>
+
 
             <div id="posts-tools">
 
