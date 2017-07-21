@@ -46,13 +46,19 @@
 
             getTabClasses: function (type) {
 
+                // TODO: make more flexible
+
+                let classes = [];
+
                 let lastSegment = location.href.split('/').pop();
 
-                if (lastSegment === type) {
-                  return ['is-active'];
-                } else {
-                  return [];
+                if (type === 'profile' && (lastSegment === 'profile' || lastSegment === 'edit')) {
+                  classes.push('is-active');
+                } else if (type === 'posts' && (lastSegment === 'posts' || lastSegment === 'new')) {
+                  classes.push('is-active');
                 }
+                 
+                return classes;
                 
             }
         },
