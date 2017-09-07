@@ -71,7 +71,9 @@ COOKIE_MAX_AGE=6000000
 
 To run the seeds: node ./bin/<seed filename> (e.g. node ./bin/seed-users.js)
 
-You are now good to go. You can create as many users, posts, categories and tools as you want in your local.
+You are now good to go. You can access the app locally in your web browser at the following URL: [http://localhost:3000/](http://localhost:3000/)
+
+You can create as many users, posts, categories and tools as you want in your local.
 
 ## Deployment
 
@@ -91,6 +93,10 @@ Please contact us for deploying new contributions.
 * [jQuery](https://jquery.com/) - used for accessing elements on pages
 * [Bulma](http://bulma.io/) - as the CSS framework based on Flexbox 
 * [Font Awsome](http://fontawesome.io/) - used for displaying quality icons on any screen resolution and size
+
+## Code Quality
+
+[![DeepScan Grade](https://deepscan.io/api/projects/395/branches/609/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&pid=395&bid=609)
 
 ## Contributing
 
