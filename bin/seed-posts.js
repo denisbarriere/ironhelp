@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 require("dotenv").config();
 mongoose.connect(process.env.MONGODB_URI); // db name from local .env
-mongoose.connect(process.env.MONGODB_ADMIN_PWD); // admin password from local .env
 const Post = require('../models/post');
 const User = require('../models/user');
 

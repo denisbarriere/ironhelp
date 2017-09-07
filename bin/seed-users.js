@@ -24,7 +24,7 @@ const admins = [
         username: 'denis',
         bio: 'Denis is a great admin',
         password: hashPass,
-        imageUrl: 'https://avatars4.githubusercontent.com/u/28688064?v=4&s=400',
+        imageUrl: 'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif',
         role: 'ADMIN',
     },
 ]

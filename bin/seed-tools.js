@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt   = require('bcrypt');
 require("dotenv").config();
 mongoose.connect(process.env.MONGODB_URI); // db name from local .env
-mongoose.connect(process.env.MONGODB_ADMIN_PWD); // admin password from local .env
 const Tool = require('../models/tool');
 
 // tools
