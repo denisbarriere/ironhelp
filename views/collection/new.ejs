@@ -3,7 +3,7 @@
 <form class="hero-body" action='/admin/users' method='POST'>
   <div class="container">
     <div class="columns is-vcentered">
-      <div class="column is-4 is-offset-4">
+      <div class="column is-6 is-offset-3">
         <h1 class="title">
           New <%= collectionName.charAt(0).toUpperCase() %><%= collectionName.slice(1) %>
         </h1>
@@ -24,6 +24,32 @@
           <p class="control">
             <input class="input" type='text' id='description' name='description'></input>
           </p> 
+
+          <% if(collectionName === 'tool') { %>
+          <br>
+          <label class="label" for='website'>Website URL</label>
+          <p class="control">
+            <input class="input" type='text' id='website' name='website'></input>
+          </p> 
+
+          <br>
+          <label class="label" for='documentation'>Documentation URL</label>
+          <p class="control">
+            <input class="input" type='text' id='documentation' name='documentation'></input>
+          </p> 
+
+          <br>
+          <label class="label" for='github'>GitHub URL</label>
+          <p class="control">
+            <input class="input" type='text' id='github' name='github'></input>
+          </p> 
+
+          <br>
+          <label class="label" for='technology'>Technology</label>
+          <p class="control">
+            <input class="input" type='text' id='technology' name='technology'></input>
+          </p> 
+          <% } %>
 
           <hr>
           <div class="field is-grouped">

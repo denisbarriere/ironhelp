@@ -25,6 +25,32 @@
             <input class="input" type="text" name='description' value='<%= document.description %>'>
           </p>
 
+          <% if(collectionName === 'tool') { %>
+          <br>
+          <label class="label" for='website'>Website URL</label>
+          <p class="control">
+            <input class="input" type='text' id='website' name='website' value='<% document.website %>'></input>
+          </p> 
+
+          <br>
+          <label class="label" for='documentation'>Documentation URL</label>
+          <p class="control">
+            <input class="input" type='text' id='documentation' name='documentation' value='<% document.documentation %>'></input>
+          </p> 
+
+          <br>
+          <label class="label" for='github'>GitHub URL</label>
+          <p class="control">
+            <input class="input" type='text' id='github' name='github' value='<% document.github %>'></input>
+          </p> 
+
+          <br>
+          <label class="label" for='technology'>Technology</label>
+          <p class="control">
+            <input class="input" type='text' id='technology' name='technology' value='<% document.technology %>'></input>
+          </p> 
+          <% } %>
+
           <hr>
           <p class="control">
             <button class="button is-primary">Update</button>
