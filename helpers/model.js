@@ -1,7 +1,3 @@
-const Tool = require('../models/tool');
-const Category = require('../models/category');
-
-
 /******************************
  *                            * 
  *  LOCAL FUNCTIONS           *

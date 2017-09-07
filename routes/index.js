@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../helpers/auth');
 const Tool = require('../models/tool');
 const Post = require('../models/post');
 const postHelper = require('../helpers/post');
