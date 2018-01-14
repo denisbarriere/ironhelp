@@ -109,7 +109,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 * **Denis Barriere** - *Initial release* - [denisbarriere](https://github.com/denisbarriere)
-* **JB Tellez Barriere** - *Initial release* - [JB-Tellez](https://github.com/JB-Tellez)
+* **JB Tellez** - *Initial release* - [JB-Tellez](https://github.com/JB-Tellez)
 
 See also the list of [contributors](https://github.com/denisbarriere/ironhelp/graphs/contributors) who participated in this project.
 
